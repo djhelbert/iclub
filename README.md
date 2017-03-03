@@ -1,2 +1,2 @@
 # iclub
-Free Open Source Club Site
+Free Open Source Athletic Club Site
