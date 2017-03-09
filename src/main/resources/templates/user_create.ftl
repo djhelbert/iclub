@@ -21,35 +21,35 @@
   <h2>Register</h2>
   <form role="form" name="form" action="" method="POST">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Email:</label>
-      <div class="col-sm-10"><input type="email" class="form-control" name="email" placeholder="Enter email address for username" maxlength="50" value="${form.email}"></div>
+      <label class="control-label col-sm-2" for="email">Email *</label>
+      <div class="col-sm-10"><@spring.formInput "form.email" "class='form-control'" "email"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="password">Password:</label>
+      <label class="control-label col-sm-2" for="password">Password *</label>
       <div class="col-sm-10"><@spring.formInput "form.password" "class='form-control'" "password"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="passwordConfirm">Confirm Password:</label>
+      <label class="control-label col-sm-2" for="passwordConfirm">Confirm Password *</label>
       <div class="col-sm-10"><@spring.formInput "form.passwordConfirm" "class='form-control'" "password"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="firstName">First Name:</label>
+      <label class="control-label col-sm-2" for="firstName">First Name *</label>
       <div class="col-sm-10"><@spring.formInput "form.firstName" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="lastName">Last Name:</label>
+      <label class="control-label col-sm-2" for="lastName">Last Name *</label>
       <div class="col-sm-10"><@spring.formInput "form.lastName" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Home Phone:</label>
+      <label class="control-label col-sm-2" for="homePhone">Home Phone</label>
       <div class="col-sm-10"><@spring.formInput "form.homePhone" "class='form-control' maxlength='20'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="cellPhone">Cell Phone:</label>
+      <label class="control-label col-sm-2" for="cellPhone">Cell Phone</label>
       <div class="col-sm-10"><@spring.formInput "form.cellPhone" "class='form-control' maxlength='20'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="addressLine1">Address:</label>
+      <label class="control-label col-sm-2" for="addressLine1">Address</label>
       <div class="col-sm-10"><@spring.formInput "form.addressLine1" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
@@ -57,15 +57,15 @@
       <div class="col-sm-10"><@spring.formInput "form.addressLine2" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="city">City:</label>
+      <label class="control-label col-sm-2" for="city">City</label>
       <div class="col-sm-10"><@spring.formInput "form.city" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="state">State:</label>
+      <label class="control-label col-sm-2" for="state">State</label>
       <div class="col-sm-10"><@spring.formInput "form.state" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="zipCode">Zip Code:</label>
+      <label class="control-label col-sm-2" for="zipCode">Zip Code</label>
       <div class="col-sm-10"><@spring.formInput "form.zipCode" "class='form-control' maxlength='5'" "text"/></div>
     </div>
     
