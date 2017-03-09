@@ -1,44 +1,37 @@
 package org.iclub.model;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UserForm {
 
-	@NotEmpty
 	private String email = "";
 
-	@NotEmpty
 	private String password = "";
 
-	@NotEmpty
 	private String passwordConfirm = "";
 
-	@NotNull
-	private Role role;
+	private Role role = Role.USER;
 
-	@NotEmpty
-	private String firstName;
+	private String firstName = "";
 
-	@NotEmpty
-	private String lastName;
+	private String lastName = "";
 
-	private String homePhone;
+	private String homePhone = "";
 
-	private String cellPhone;
+	private String cellPhone = "";
 
-	private String addressLine1;
+	private String addressLine1 = "";
 
-	private String addressLine2;
+	private String addressLine2 = "";
 
-	private String city;
+	private String city = "";
 
-	private String state;
+	private String state = "";
 
-	private String zipCode;
+	private String zipCode = "";
 
+	private Boolean agree = Boolean.FALSE;
+	
 	public String getPassword() {
 		return password;
 	}
@@ -143,6 +136,14 @@ public class UserForm {
 		this.role = role;
 	}
 	
+	public Boolean getAgree() {
+		return agree;
+	}
+
+	public void setAgree(Boolean agree) {
+		this.agree = agree;
+	}
+
 	public User getUser() {
 		User user = new User();
 		user.setAddressLine1(addressLine1);

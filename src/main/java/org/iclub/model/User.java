@@ -11,13 +11,13 @@ public class User {
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 
-	@Column(name = "email", nullable = false, unique = true)
+	@Column(name = "email", nullable = false, unique = true, length = 50)
 	private String email;
 
-	@Column(name = "first_name", nullable = false, unique = false)
+	@Column(name = "first_name", nullable = false, unique = false, length = 50)
 	private String firstName;
 	
-	@Column(name = "last_name", nullable = false, unique = false)
+	@Column(name = "last_name", nullable = false, unique = false, length = 50)
 	private String lastName;
 	
 	@Column(name = "home_phone", nullable = true, unique = false)
@@ -29,19 +29,19 @@ public class User {
 	@Column(name = "password_hash", nullable = false)
 	private String passwordHash;
 
-	@Column(name = "address_line_1", nullable = true, unique = false)
+	@Column(name = "address_line_1", nullable = true, unique = false, length = 100)
 	private String addressLine1;
 	
-	@Column(name = "address_line_2", nullable = true, unique = false)
+	@Column(name = "address_line_2", nullable = true, unique = false, length = 100)
 	private String addressLine2;
 	
-	@Column(name = "city", nullable = true, unique = false)
+	@Column(name = "city", nullable = true, unique = false, length = 100)
 	private String city;
 	
-	@Column(name = "state", nullable = true, unique = false)
+	@Column(name = "state", nullable = true, unique = false, length = 100)
 	private String state;
 	
-	@Column(name = "zip_code", nullable = true, unique = false)
+	@Column(name = "zip_code", nullable = true, unique = false, length = 5)
 	private String zipCode;
 	
 	@Column(name = "role", nullable = false)

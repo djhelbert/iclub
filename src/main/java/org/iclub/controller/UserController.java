@@ -59,7 +59,7 @@ public class UserController {
             return "user_create";
         }
         
-        return "redirect:/index";
+        return "redirect:/login";
     }
 
 }

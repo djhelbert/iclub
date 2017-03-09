@@ -31,9 +31,9 @@
           </div>
         </div>
                                     
-        <button type="submit" class="btn btn-success">Sign in</button>
+        <button type="submit" class="btn btn-success">Sign In</button>
   
-        <hr style="margin-top:10px;margin-bottom:10px;" >
+        <hr style="margin-top:10px;margin-bottom:30px;" >
   
         <div class="form-group">                                
           <div style="font-size:85%">Don't have an account!</div>

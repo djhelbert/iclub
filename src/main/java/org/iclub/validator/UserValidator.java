@@ -1,6 +1,5 @@
 package org.iclub.validator;
 
-import org.iclub.model.User;
 import org.iclub.model.UserForm;
 import org.iclub.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,24 +20,30 @@ public class UserValidator implements Validator {
 
     @Override
     public void validate(Object o, Errors errors) {
-        final UserForm user = (UserForm) o;
+        final UserForm userForm = (UserForm) o;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getEmail().length() < 6 || user.getEmail().length() > 32) {
-            errors.rejectValue("username", "Size.userForm.username");
-        }
-        
-        if (userService.getUserByEmail(user.getEmail()).isPresent()) {
-            errors.rejectValue("username", "Duplicate.userForm.username");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "email.required");
+
+        if (userForm.getEmail().length() < 6 || userForm.getEmail().length() > 50) {
+            errors.rejectValue("email", "email.size");
         }
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() == 0) {
-            errors.rejectValue("password", "Size.userForm.password");
+        if (userService.getUserByEmail(userForm.getEmail()).isPresent()) {
+            errors.rejectValue("email", "email.duplicate");
         }
 
-        if (!user.getPasswordConfirm().equals(user.getPassword())) {
-            errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "password.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "password.confirm.required");
+
+        if (!userForm.getPasswordConfirm().equals(userForm.getPassword())) {
+            errors.rejectValue("passwordConfirm", "password.confirm.different");
+        }
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstname.required");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastname.required");
+
+        if (!userForm.getAgree()) {
+        	errors.reject("agree.required");
         }
     }
 }
