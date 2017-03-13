@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 public interface SettingRepository extends JpaRepository<Setting, Long> {
 
 	Optional<Setting> findSettingByName(String name);
-	
+
 }

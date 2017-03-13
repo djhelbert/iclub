@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,10 +21,9 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
 
 	private final UserRepository userRepository;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	private final static BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
-	
+
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -34,24 +32,28 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Optional<User> getUserById(long id) {
 		LOGGER.debug("Getting user={}", id);
+
 		return Optional.ofNullable(userRepository.findOne(id));
 	}
 
 	@Override
 	public Optional<User> getUserByEmail(String email) {
 		LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
+
 		return userRepository.findUserByEmail(email);
 	}
 
 	@Override
 	public List<User> findByRole(Role role) {
 		LOGGER.debug("Getting user by role={}", role.name());
+
 		return userRepository.findByRole(role);
 	}
 
 	@Override
 	public Collection<User> getAllUsers() {
 		LOGGER.debug("Getting all users");
+
 		return userRepository.findAll(new Sort("email"));
 	}
 

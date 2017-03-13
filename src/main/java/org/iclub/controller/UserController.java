@@ -51,15 +51,14 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "user_create";
         }
-        
+
         try {
             userService.save(form);
         } catch (DataIntegrityViolationException e) {
             bindingResult.reject("email.exists", "Email already exists");
             return "user_create";
         }
-        
+
         return "redirect:/login";
     }
-
 }

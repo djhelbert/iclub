@@ -14,21 +14,20 @@ public class LocaleConfig extends WebMvcConfigurerAdapter {
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
-        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        final LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
         lci.setParamName("lang");
         return lci;
     }
-    
+
     @Bean
     public SessionLocaleResolver sessionLocaleResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
+        final SessionLocaleResolver slr = new SessionLocaleResolver();
         slr.setDefaultLocale(Locale.US);
         return slr;
     }
-    
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(localeChangeInterceptor());
     }
-    
 }

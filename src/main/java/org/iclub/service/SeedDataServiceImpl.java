@@ -20,20 +20,20 @@ public class SeedDataServiceImpl implements SeedDataService {
 
 	private final UserService userService;
 	private final SettingService settingService;
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(SeedDataServiceImpl.class);
-	
+
 	@Autowired
 	public SeedDataServiceImpl(UserService userService, SettingService settingService) {
 		this.userService = userService;
 		this.settingService = settingService;
 	}
-	
+
 	@Override
 	public void init() {
-		List<User> adminUsers = userService.findByRole(Role.ADMIN);
-		
-		if (adminUsers.isEmpty()) {			
+		final List<User> adminUsers = userService.findByRole(Role.ADMIN);
+
+		if (adminUsers.isEmpty()) {
 			final UserForm admin = new UserForm();
 			admin.setEmail("admin");
 			admin.setFirstName("admin");
@@ -42,24 +42,26 @@ public class SeedDataServiceImpl implements SeedDataService {
 
 			userService.save(admin);
 		}
-		
+
 		createSetting(SettingService.FACEBOOK, "facebook");
 		createSetting(SettingService.TWITTER, "Twitter");
 		createSetting(SettingService.TITLE, "Default");
+		createSetting(SettingService.DESCRIPTION, "This is the default descrption of the club.");
 		createSetting(SettingService.PINTEREST, "pinterest");
 		createSetting(SettingService.YOUTUBE, "youtube");
 	}
-	
+
 	private void createSetting(String name, String value) {
 		final Optional<Setting> optional = settingService.findSettingByName(name);
-		
+
 		if (!optional.isPresent()) {
 			LOGGER.debug(name + " set to " + value);
-			
+
 			final Setting setting = new Setting();
 			setting.setName(name);
 			setting.setValue(value);
-			settingService.create(setting);
+
+			settingService.save(setting);
 		}
 	}
 }

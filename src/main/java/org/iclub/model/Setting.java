@@ -16,12 +16,12 @@ public class Setting {
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 
-	@Column(name = "name", nullable = false, unique = true)
+	@Column(name = "name", nullable = false, unique = false, length = 50)
 	private String name;
 
-	@Column(name = "value", nullable = false, unique = true)
+	@Column(name = "value", nullable = false, unique = false, length = 250)
 	private String value;
-	
+
 	public Long getId() {
 		return id;
 	}

@@ -3,10 +3,12 @@ package org.iclub.service;
 import java.util.Optional;
 
 import org.iclub.model.Setting;
+import org.iclub.model.SettingForm;
 
 public interface SettingService {
 
 	String TITLE = "TITLE";
+	String DESCRIPTION = "DESCRIPTION";
 	String TWITTER = "TWITTER";
 	String FACEBOOK = "FACEBOOK";
 	String PINTEREST = "PINTEREST";
@@ -18,10 +20,11 @@ public interface SettingService {
 	String CONTACT_STATE = "CONTACT_STATE";
 	String CONTACT_ZIP_CODE = "CONTACT_ZIP_CODE";
 	String CONTACT_PHONE = "CONTACT_PHONE";
-	String STRAVA_GROUP = "STRAVA_GROUP";
-	
+	String STRAVA = "STRAVA";
+
 	Optional<Setting> findSettingByName(String name);
-	
-	Setting create(Setting setting);
-	
+
+	Setting save(Setting setting);
+
+	SettingForm getSettingForm();
 }
