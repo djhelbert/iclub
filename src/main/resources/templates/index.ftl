@@ -5,10 +5,10 @@
 <div class="row">
   <div class="col-sm-4">
     <div>
-      <a class="twitter-timeline" data-lang="en" data-width="300" data-height="454" data-dnt="true" href="https://twitter.com/onemultisport">Tweets by fabric</a> <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a class="twitter-timeline" data-lang="en" data-width="300" data-height="454" data-dnt="true" href="https://twitter.com/${TWITTER}">Tweets</a> <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     <div>
-      <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/clubs/80067/latest-rides/1aad5fa871e1c40c03e99501bdc41a5d974c410e?show_rides=true'></iframe>
+      <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/clubs/${STRAVA}/latest-rides/1aad5fa871e1c40c03e99501bdc41a5d974c410e?show_rides=true'></iframe>
     </div>
   </div>
   <div class="col-sm-8">

@@ -45,7 +45,7 @@
       <div class="col-sm-10"><@spring.formInput "form.youtube" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Strava Group</label>
+      <label class="control-label col-sm-2" for="homePhone">Strava Group ID</label>
       <div class="col-sm-10"><@spring.formInput "form.strava" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">

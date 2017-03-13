@@ -8,7 +8,7 @@
                     <h3> Address </h3>
                     <ul>
                         <li>${CONTACT_ADDRESS_LINE1} ${CONTACT_ADDRESS_LINE2}</li>
-                        <li>${CONTACT_CITY}<#if !CONTACT_STATE??>,</#if>${CONTACT_STATE}</li>
+                        <li>${CONTACT_CITY}&nbsp;${CONTACT_STATE}</li>
                         <li>${CONTACT_ZIP_CODE}</li>
                     </ul>
                 </div>

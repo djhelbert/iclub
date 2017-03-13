@@ -40,14 +40,7 @@ public class SettingServiceImpl implements SettingService {
 
 	@Override
 	public SettingForm getSettingForm() {
-		SettingForm form = new SettingForm();
-
-		form.setContactAddressLine1(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE1)));
-		form.setContactAddressLine2(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE2)));
-		form.setContactEmail(getValue(settingRepository.findSettingByName(SettingService.CONTACT_EMAIL)));
-		form.setContactCity(getValue(settingRepository.findSettingByName(SettingService.CONTACT_CITY)));
-		form.setContactState(getValue(settingRepository.findSettingByName(SettingService.CONTACT_STATE)));
-		form.setContactZipCode(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
+		final SettingForm form = new SettingForm();
 
 		form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));
 		form.setDescription(getValue(settingRepository.findSettingByName(SettingService.DESCRIPTION)));
@@ -57,6 +50,14 @@ public class SettingServiceImpl implements SettingService {
 		form.setYoutube(getValue(settingRepository.findSettingByName(SettingService.YOUTUBE)));
 		form.setPinterest(getValue(settingRepository.findSettingByName(SettingService.PINTEREST)));
 		form.setTwitter(getValue(settingRepository.findSettingByName(SettingService.TWITTER)));
+
+		form.setContactAddressLine1(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE1)));
+		form.setContactAddressLine2(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE2)));
+		form.setContactEmail(getValue(settingRepository.findSettingByName(SettingService.CONTACT_EMAIL)));
+		form.setContactCity(getValue(settingRepository.findSettingByName(SettingService.CONTACT_CITY)));
+		form.setContactState(getValue(settingRepository.findSettingByName(SettingService.CONTACT_STATE)));
+		form.setContactZipCode(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
+		form.setContactPhone(getValue(settingRepository.findSettingByName(SettingService.CONTACT_PHONE)));
 
 		return form;
 	}
