@@ -8,6 +8,7 @@ import org.iclub.model.UserForm;
 import org.iclub.service.UserService;
 import org.iclub.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@ConditionalOnWebApplication
 public class UserController {
 
     private final UserService userService;
