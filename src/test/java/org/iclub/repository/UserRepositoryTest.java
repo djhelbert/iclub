@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.iclub.model.Role;
 import org.iclub.model.User;
 import org.junit.Before;
@@ -31,14 +29,14 @@ public class UserRepositoryTest extends AbstractRepositoryTest {
     public void setup() {
     	entityManager.clear();
     }
-    
+
     @Test
     public void testFindByEmail() {
         entityManager.persist(getUser("admin@email.com", Role.ADMIN, "hashed"));
-        
+
         Optional<User> usr = userRepository.findUserByEmail("admin@email.com");
         assertEquals("admin@email.com", usr.get().getEmail());
-        
+
         List<User> list = userRepository.findByRole(Role.ADMIN);
         assert list.size() > 0;
     }

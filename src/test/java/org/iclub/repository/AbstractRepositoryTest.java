@@ -17,7 +17,7 @@ public class AbstractRepositoryTest {
 		user.setHomePhone("555-555-6666");
 		return user;
 	}
-	
+
 	public Setting getSetting(String name, String value) {
 		Setting setting = new Setting();
 		setting.setName(name);

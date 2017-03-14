@@ -15,7 +15,7 @@ public interface UserService {
 	Optional<User> getUserByEmail(String email);
 
 	List<User> findByRole(Role role);
-	
+
 	Collection<User> getAllUsers();
 
 	User save(UserForm userForm);

@@ -10,17 +10,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class SeedDataServiceTest {
-    
+
     @Autowired
     private SeedDataService seedDataService;
 
     @Autowired
     private UserService userService;
-    
+
     @Test
     public void testService() {
     	seedDataService.init();
-    	
+
     	assert userService.findByRole(Role.ADMIN).get(0).getFirstName().equals("admin");
     }
 }
