@@ -16,34 +16,34 @@ public class User {
 
 	@Column(name = "first_name", nullable = false, unique = false, length = 50)
 	private String firstName;
-	
+
 	@Column(name = "last_name", nullable = false, unique = false, length = 50)
 	private String lastName;
-	
+
 	@Column(name = "home_phone", nullable = true, unique = false)
 	private String homePhone;
-	
+
 	@Column(name = "cell_phone", nullable = true, unique = false)
 	private String cellPhone;
-	
+
 	@Column(name = "password_hash", nullable = false)
 	private String passwordHash;
 
 	@Column(name = "address_line_1", nullable = true, unique = false, length = 100)
 	private String addressLine1;
-	
+
 	@Column(name = "address_line_2", nullable = true, unique = false, length = 100)
 	private String addressLine2;
-	
+
 	@Column(name = "city", nullable = true, unique = false, length = 100)
 	private String city;
-	
+
 	@Column(name = "state", nullable = true, unique = false, length = 100)
 	private String state;
-	
+
 	@Column(name = "zip_code", nullable = true, unique = false, length = 5)
 	private String zipCode;
-	
+
 	@Column(name = "role", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Role role;
@@ -67,7 +67,7 @@ public class User {
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
 	}
-    
+
 	public Role getRole() {
 		return role;
 	}
