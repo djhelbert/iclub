@@ -191,7 +191,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
+              <li><a href="/content?name=ABOUT">About</a></li>
               <li><a href="sponsors">Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
               <li class="dropdown">

@@ -22,8 +22,8 @@
                 <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                     <h3>Legal</h3>
                     <ul>
-                        <li><a href="/terms">Terms of Use</a></li>
-                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/content?name=TERMS">Terms of Use</a></li>
+                        <li><a href="/content?name=PRIVACY">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-3  col-md-3 col-sm-6 col-xs-12 ">
