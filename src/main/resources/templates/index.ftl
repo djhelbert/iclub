@@ -1,7 +1,6 @@
 <#include "header.ftl">
 
 <div class="container">
-
 <div class="row">
   <div class="col-sm-4">
     <div>
@@ -12,9 +11,11 @@
     </div>
   </div>
   <div class="col-sm-8">
+    <#if LOGO??>
     <div>
-      <img src="http://www.onemultisport.com/wp-content/uploads/2011/05/vol-one-teer.jpg" class="img-rounded" alt="Cinque Terre" >
+      <img src="/file?id=${LOGO}" alt="Logo" >
     </div>
+    </#if>
     <div>&nbsp;</div>
     <div>
       ${DESCRIPTION}
@@ -24,33 +25,26 @@
 
     <!-- Indicators -->
     <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-      <li data-target="#myCarousel" data-slide-to="3"></li>
+      <#if SCROLLERS??>
+         <#assign x=0>
+         <#list SCROLLERS as scroller>
+           <li data-target="#myCarousel" data-slide-to="${x}" <#if x=1>class="active"></#if></li>
+           <#assign x++>
+         </#list>
+       </#if>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-       <div class="item active">
-         <img src="http://lavamagazine.com/wp-content/blogs.dir/2/files/2011/09/10-23-rumonmaui2.jpg" alt="First">
-         <div class="carousel-caption">
-           <h3>Runners</h3>
-           <p>We are simply the best.</p>
-         </div>
-       </div>
-
-       <div class="item">
-         <img src="http://www.xterraplanet.com/wp-content/uploads/DSC_0400-001.jpg" alt="Second">
-       </div>
-
-       <div class="item">
-         <img src="https://lisamulch.files.wordpress.com/2010/10/img_56751.jpg" alt="Third">
-       </div>
-
-       <div class="item">
-         <img src="http://d279m997dpfwgl.cloudfront.net/wp/2016/04/runners.jpg" alt="Fourth">
-       </div>
+       <#if SCROLLERS??>
+         <#assign x=0>
+         <#list SCROLLERS as scrollerId>
+           <div class="item <#if x=1>active</#if>">
+             <img src="/file?id=${scrollerId}" alt="Scroller Image">
+           </div>
+           <#assign x++>
+         </#list>
+       </#if>
      </div>
 
      <!-- Left and right controls -->
@@ -65,9 +59,6 @@
     </div>
   </div>
 </div>
-
-
-
 </div>
 
 <#include "footer.ftl">

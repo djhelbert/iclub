@@ -1,9 +1,5 @@
 package org.iclub.service;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,13 +20,6 @@ public class BinaryFileServiceImpl implements BinaryFileService {
 	@Override
 	public BinaryFile save(BinaryFile binaryFile) {
 		return binaryFileRepository.save(binaryFile);
-	}
-
-	@Override
-	public BinaryFile saveResource(String path, String mimetype, Boolean logo, Boolean scroller, Boolean resource) throws IOException, URISyntaxException {
-		final URL url = this.getClass().getResource(path);
-		final File file = new File(url.toURI());
-		return save(new BinaryFile(file, mimetype, logo, scroller, resource));
 	}
 
 	@Override

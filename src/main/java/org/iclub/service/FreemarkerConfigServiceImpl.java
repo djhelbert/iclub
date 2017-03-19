@@ -1,7 +1,10 @@
 package org.iclub.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.iclub.model.BinaryFile;
 import org.iclub.model.Setting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,13 +22,14 @@ public class FreemarkerConfigServiceImpl implements FreemarkerConfigService {
 
 	private final FreeMarkerConfigurer configurer;
 	private final SettingService settingService;
-
+	private final BinaryFileService binaryFileService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(FreemarkerConfigServiceImpl.class);
 
 	@Autowired
-	public FreemarkerConfigServiceImpl(FreeMarkerConfigurer configurer, SettingService settingService) {
+	public FreemarkerConfigServiceImpl(FreeMarkerConfigurer configurer, SettingService settingService, BinaryFileService binaryFileService) {
 		this.configurer = configurer;
 		this.settingService = settingService;
+		this.binaryFileService = binaryFileService;
 
 		refresh();
 	}
@@ -48,11 +52,32 @@ public class FreemarkerConfigServiceImpl implements FreemarkerConfigService {
 			configuration.setSharedVariable(SettingService.CONTACT_STATE, getValue(settingService.findSettingByName(SettingService.CONTACT_STATE)));
 			configuration.setSharedVariable(SettingService.CONTACT_ZIP_CODE, getValue(settingService.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
 			configuration.setSharedVariable(SettingService.CONTACT_PHONE, getValue(settingService.findSettingByName(SettingService.CONTACT_PHONE)));
+
+			final Long logoId = getBinaryFileValue(binaryFileService.findBinaryFileByLogo(Boolean.TRUE));
+
+			if (logoId != null) {
+				configuration.setSharedVariable(SettingService.LOGO, logoId);
+			}
+
+			final List<BinaryFile> scrollers = binaryFileService.findByScroller(Boolean.TRUE);
+
+			if (scrollers != null && scrollers.size() > 0) {
+				List<Long> scrollerIds = scrollers.parallelStream().map(BinaryFile::getId).collect(Collectors.toList());
+				configuration.setSharedVariable(SettingService.SCROLLERS, scrollerIds);
+			}
 		} catch (TemplateModelException e) {
 			LOGGER.error("refresh", e);
 		}
 	}
 
+	private Long getBinaryFileValue(Optional<BinaryFile> optional) {
+		if (optional != null && optional.isPresent()) {
+			return optional.get().getId();
+		} else {
+			return null;
+		}
+	}
+	
 	private String getValue(Optional<Setting> optional) {
 		if (optional != null && optional.isPresent()) {
 			return optional.get().getValue();

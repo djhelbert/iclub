@@ -22,6 +22,9 @@ public interface SettingService {
 	String CONTACT_PHONE = "CONTACT_PHONE";
 	String STRAVA = "STRAVA";
 
+	String LOGO = "LOGO";
+	String SCROLLERS = "SCROLLERS";
+
 	Optional<Setting> findSettingByName(String name);
 
 	Setting save(Setting setting);

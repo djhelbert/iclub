@@ -2,12 +2,10 @@ package org.iclub.service;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.Optional;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -26,19 +24,16 @@ public class BinaryFileServiceTest {
 	private BinaryFileService binaryFileService;
 
 	private static final String MIMETYPE = "image/png";
-
+	
 	@Test
 	public void testRepository() {
-		URL url = this.getClass().getResource("/image.png");
-
 		try {
-			File file = new File(url.toURI());
-			binaryFileService.save(new BinaryFile(file, MIMETYPE, true, false, false));
+			binaryFileService.save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
 
-			Optional<BinaryFile> optional = binaryFileService.findBinaryFileByLogo(Boolean.TRUE);
-			assert optional.isPresent();
+			List<BinaryFile> resources = binaryFileService.findByResource(Boolean.TRUE);
+			assert resources.size() > 0;
 
-			InputStream in = new ByteArrayInputStream(optional.get().getData());
+			InputStream in = new ByteArrayInputStream(resources.get(0).getData());
 			BufferedImage image = ImageIO.read(in);
 			assert image.getHeight() == 32;
 			assert image.getWidth() == 32;

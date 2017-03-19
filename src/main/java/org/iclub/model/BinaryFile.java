@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
@@ -16,8 +20,9 @@ import javax.persistence.Table;
 public class BinaryFile {
 
 	@Id
-	@Column(name = "id")
-	private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false, updatable = false)
+	private Long id;
 
 	@Column(name = "name", nullable = false, unique = false, length = 50)
 	private String name;
@@ -40,19 +45,25 @@ public class BinaryFile {
 	/** 16MB */
 	private static long MAX_FILE_SIZE = 16777215;
 
-	public BinaryFile() {
+	private static Class<? extends Boolean> clazz = (new Boolean(true)).getClass();
+
+	public static BinaryFile getBinaryFile(String path, String mimetype, Boolean logo, Boolean scroller, Boolean resource ) throws IOException, URISyntaxException {
+		final URL url = clazz.getResource(path);
+		final File file = new File(url.toURI());
+
+		BinaryFile bf = new BinaryFile();
+
+		bf.setName(file.getName());
+		bf.setData(read(file));
+		bf.setMimetype(mimetype);
+		bf.setLogo(logo);
+		bf.setResource(resource);
+		bf.setScroller(scroller);
+
+		return bf;
 	}
 
-	public BinaryFile(File file, String mimetype, Boolean logo, Boolean scroller, Boolean resource ) throws IOException {
-		name = file.getName();
-		data = read(file);
-		this.mimetype = mimetype;
-		this.logo = logo;
-		this.resource = resource;
-		this.scroller = scroller;
-	}
-
-	private byte[] read(File file) throws IOException {
+	private static byte[] read(File file) throws IOException {
 	    if (file.length() > MAX_FILE_SIZE) {
 	        throw new IllegalArgumentException();
 	    }
@@ -78,11 +89,11 @@ public class BinaryFile {
 	    return buffer;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

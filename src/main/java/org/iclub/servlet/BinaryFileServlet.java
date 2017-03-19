@@ -30,10 +30,11 @@ public class BinaryFileServlet extends HttpServlet {
 	}
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) {
 		final String id = req.getParameter("id");
+        final Long idParameter = new Long(id);
 
-		BinaryFile binaryFile = binaryFileService.getBinaryFile(Long.getLong(id));
+		BinaryFile binaryFile = binaryFileService.getBinaryFile(idParameter);
 		resp.setContentType(binaryFile.getMimetype());
 
 		final ByteArrayInputStream is = new ByteArrayInputStream(binaryFile.getData());
