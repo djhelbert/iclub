@@ -190,7 +190,7 @@
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/">Home</a></li>
+              <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <li><a href="/content?name=ABOUT">About</a></li>
               <li><a href="sponsors">Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
@@ -207,11 +207,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
               <#if !currentUser??>
-                <li><a href="/register">Register</a></li>
-                <li><a href="/login">Login</a></li>
+                <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </#if>
               <#if currentUser??>
-                <li><a href="/logout">Logout</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"> Logout</a></li>
               </#if>
             </ul>
           </div>
