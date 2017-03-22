@@ -7,8 +7,10 @@
       <a class="twitter-timeline" data-lang="en" data-width="300" data-height="454" data-dnt="true" href="https://twitter.com/${TWITTER}">Tweets</a> <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
     <div>
-      <iframe height='454' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/clubs/${STRAVA}/latest-rides/1aad5fa871e1c40c03e99501bdc41a5d974c410e?show_rides=true'></iframe>
+    <#if STRAVA??>
+      ${STRAVA}
     </div>
+    </#if>
   </div>
   <div class="col-sm-8">
     <#if LOGO??>

@@ -192,7 +192,7 @@
             <ul class="nav navbar-nav">
               <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <li><a href="/content?name=ABOUT">About</a></li>
-              <li><a href="sponsors">Sponsors</a></li>
+              <li><a href="/sponsors">Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>

@@ -21,55 +21,55 @@
   <h2>Club Settings</h2>
   <form role="form" name="form" action="" method="POST">
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email">Title *</label>
+      <label class="control-label col-sm-2" for="title">Title *</label>
       <div class="col-sm-10"><@spring.formInput "form.title" "class='form-control'  maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="firstName">Description *</label>
+      <label class="control-label col-sm-2" for="description">Description *</label>
       <div class="col-sm-10"><@spring.formInput "form.description" "class='form-control' maxlength='250'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="lastName">Facebook Group</label>
+      <label class="control-label col-sm-2" for="facebook">Facebook Group</label>
       <div class="col-sm-10"><@spring.formInput "form.facebook" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Twitter Handle</label>
+      <label class="control-label col-sm-2" for="twitter">Twitter Handle</label>
       <div class="col-sm-10"><@spring.formInput "form.twitter" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Pinterest Group</label>
+      <label class="control-label col-sm-2" for="pinterest">Pinterest Group</label>
       <div class="col-sm-10"><@spring.formInput "form.pinterest" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Youtube Group</label>
+      <label class="control-label col-sm-2" for="youtube">Youtube Group</label>
       <div class="col-sm-10"><@spring.formInput "form.youtube" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="homePhone">Strava Group ID</label>
-      <div class="col-sm-10"><@spring.formInput "form.strava" "class='form-control' maxlength='50'" "text"/></div>
+      <label class="control-label col-sm-2" for="strava">Strava Embed</label>
+      <div class="col-sm-10"><@spring.formInput "form.strava" "class='form-control' maxlength='250'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="cellPhone">Contact Phone</label>
+      <label class="control-label col-sm-2" for="contactPhone">Contact Phone</label>
       <div class="col-sm-10"><@spring.formInput "form.contactPhone" "class='form-control' maxlength='20'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="addressLine1">Address</label>
+      <label class="control-label col-sm-2" for="contactAddressLine1">Address</label>
       <div class="col-sm-10"><@spring.formInput "form.contactAddressLine1" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="addressLine1"></label>
+      <label class="control-label col-sm-2" for="contactAddressLine2"></label>
       <div class="col-sm-10"><@spring.formInput "form.contactAddressLine2" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="city">City</label>
+      <label class="control-label col-sm-2" for="contactCity">City</label>
       <div class="col-sm-10"><@spring.formInput "form.contactCity" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="state">State</label>
+      <label class="control-label col-sm-2" for="contactState">State</label>
       <div class="col-sm-10"><@spring.formInput "form.contactState" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="zipCode">Zip Code</label>
+      <label class="control-label col-sm-2" for="contactZipCode">Zip Code</label>
       <div class="col-sm-10"><@spring.formInput "form.contactZipCode" "class='form-control' maxlength='5'" "text"/></div>
     </div>
 

@@ -15,6 +15,11 @@
           <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
         </div>
         </#if>
+        <#if LOGO??>
+        <div align="center">
+           <img src="/file?id=${LOGO}" alt="Logo" >
+        </div>
+        </#if>
         <div style="margin-bottom: 12px" class="input-group">
           <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
           <input name="email" type="text" class="form-control" name="username" value="" placeholder="username or email">
@@ -38,7 +43,7 @@
         <div class="form-group">
           <div style="font-size:85%">Don't have an account!</div>
           <div><a href="/register">Sign Up Here</a></div>
-        </div> 
+        </div>
       </form>
       </div>
     </div>
