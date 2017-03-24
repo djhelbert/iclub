@@ -13,7 +13,7 @@
                                 <#list users as user>
                                 <tr>
                                     <td>
-                                        <img src="http://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" class="img-circle" width="60">
+                                        <img src="/static/user_placeholder.png" class="img-circle" width="60">
                                     </td>
                                     <td>
                                         <h4><b>${user.firstName!''} ${user.lastName!''}</b></h4>
