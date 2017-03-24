@@ -16,10 +16,13 @@
 </div>
 </#if>
 
-<div class="container" style="margin-top:10px">
-<div class="form-horizontal" style="margin-bottom:10px">
-  <h2>Club Settings</h2>
-  <form role="form" name="form" action="" method="POST">
+<div class="container">
+  <div class="form-horizontal" style="margin-bottom:10px">
+    <ul class="breadcrumb">
+       <li>Admin</li>
+       <li class="active">Settings</li>
+    </ul>
+    <form role="form" name="form" action="" method="POST">
     <div class="form-group">
       <label class="control-label col-sm-2" for="title">Title *</label>
       <div class="col-sm-10"><@spring.formInput "form.title" "class='form-control'  maxlength='50'" "text"/></div>
@@ -77,7 +80,7 @@
 
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
-</div>
+  </div>
 </div>
 
 <#include "footer.ftl">

@@ -22,6 +22,9 @@ public class Sponsor {
 	@Column(name = "name", nullable = true, unique = false, length = 50)
 	private String name;
 
+	@Column(name = "url", nullable = true, unique = false, length = 50)
+	private String url;
+
 	@Column(name = "description", nullable = true, unique = false, length = 250)
 	private String description;
 
@@ -51,6 +54,14 @@ public class Sponsor {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	public BinaryFile getBinaryFile() {

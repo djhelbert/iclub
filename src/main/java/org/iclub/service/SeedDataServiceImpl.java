@@ -41,8 +41,8 @@ public class SeedDataServiceImpl implements SeedDataService {
 		if (adminUsers.isEmpty()) {
 			final UserForm admin = new UserForm();
 			admin.setEmail("admin");
-			admin.setFirstName("admin");
-			admin.setLastName("admin");
+			admin.setFirstName("iClub");
+			admin.setLastName("Administrator");
 			admin.setRole(Role.ADMIN);
 
 			userService.save(admin);
