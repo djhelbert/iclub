@@ -200,6 +200,8 @@
                   <li><a href="/admin/users">Users</a></li>
                   <li><a href="/admin/email">Send Email</a></li>
                   <li role="separator" class="divider"></li>
+                  <li><a href="/admin/about">About</a></li>
+                  <li><a href="/admin/terms">Terms of Use</a></li>
                   <li><a href="/admin/settings">Settings</a></li>
                 </ul>
               </li>

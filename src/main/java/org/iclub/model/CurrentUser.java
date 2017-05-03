@@ -8,7 +8,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	 * Serial Version UID
 	 */
 	private static final long serialVersionUID = -6801386119461825288L;
-	
+
 	private User user;
 
     public CurrentUser(User user) {
