@@ -202,6 +202,7 @@
                   <li role="separator" class="divider"></li>
                   <li><a href="/admin/about">About</a></li>
                   <li><a href="/admin/terms">Terms of Use</a></li>
+                  <li><a href="/admin/privacy">Privacy Policy</a></li>
                   <li><a href="/admin/settings">Settings</a></li>
                 </ul>
               </li>
