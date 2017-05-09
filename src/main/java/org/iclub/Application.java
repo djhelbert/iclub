@@ -6,6 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
@@ -31,6 +32,7 @@ public class Application extends SpringBootServletInitializer {
 	}
 
     @Bean
+    @ConditionalOnWebApplication
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
         	SeedDataService seedService = ctx.getBean(SeedDataService.class);
