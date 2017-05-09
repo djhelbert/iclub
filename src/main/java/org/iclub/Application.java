@@ -1,5 +1,6 @@
 package org.iclub;
 
+import org.iclub.service.FreemarkerConfigService;
 import org.iclub.service.SeedDataService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -32,14 +33,16 @@ public class Application extends SpringBootServletInitializer {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-        	SeedDataService service = ctx.getBean(SeedDataService.class);
-            service.init();
+        	SeedDataService seedService = ctx.getBean(SeedDataService.class);
+            if (seedService.init()) {
+            	FreemarkerConfigService service = ctx.getBean(FreemarkerConfigService.class);
+            	service.refresh();
+            }
         };
     }
-    
+
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(Application.class);
     }
-    
 }

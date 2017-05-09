@@ -191,7 +191,7 @@
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
               <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-              <li><a href="/content?name=ABOUT">About</a></li>
+              <li><a href="/content?name=ABOUT"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
               <li><a href="/sponsors">Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
               <li class="dropdown">
@@ -201,6 +201,7 @@
                   <li><a href="/admin/email">Send Email</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="/admin/about">About</a></li>
+                  <li><a href="/admin/sponsors">Sponsors</a></li>
                   <li><a href="/admin/terms">Terms of Use</a></li>
                   <li><a href="/admin/privacy">Privacy Policy</a></li>
                   <li><a href="/admin/settings">Settings</a></li>

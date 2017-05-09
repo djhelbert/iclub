@@ -35,33 +35,43 @@ public class SeedDataServiceImpl implements SeedDataService {
 	}
 
 	@Override
-	public void init() {
+	public boolean init() {
+		boolean updated = false;
+
 		final List<User> adminUsers = userService.findByRole(Role.ADMIN);
 
 		if (adminUsers.isEmpty()) {
-			final UserForm admin = new UserForm();
-			admin.setEmail("admin");
-			admin.setFirstName("iClub");
-			admin.setLastName("Administrator");
-			admin.setRole(Role.ADMIN);
+			final UserForm adminForm = new UserForm();
+			adminForm.setEmail("admin");
+			adminForm.setFirstName("iClub");
+			adminForm.setLastName("Administrator");
+			adminForm.setRole(Role.ADMIN);
+			adminForm.setPassword("admin");
+			adminForm.setPasswordConfirm("admin");
+			adminForm.setAgree(true);
+			userService.save(adminForm);
 
-			userService.save(admin);
+			LOGGER.info("Seeding admin user...");
+
+			updated = true;
 		}
 
-		createSetting(SettingService.FACEBOOK, "facebook");
-		createSetting(SettingService.TWITTER, "Twitter");
-		createSetting(SettingService.TITLE, "Default");
-		createSetting(SettingService.DESCRIPTION, "This is the default descrption of the club.");
-		createSetting(SettingService.PINTEREST, "pinterest");
-		createSetting(SettingService.YOUTUBE, "youtube");
+		if ( createSetting(SettingService.FACEBOOK, "facebook") ) {updated = true;}
+		if ( createSetting(SettingService.TWITTER, "Twitter") ) {updated = true;}
+		if ( createSetting(SettingService.TITLE, "Default") ) {updated = true;}
+		if ( createSetting(SettingService.DESCRIPTION, "This is the default descrption of the club.") ) {updated = true;}
+		if ( createSetting(SettingService.PINTEREST, "pinterest") ) {updated = true;}
+		if ( createSetting(SettingService.YOUTUBE, "youtube") ) {updated = true;}
 
 		Optional<BinaryFile> optional = binaryFileService.findBinaryFileByLogo(Boolean.TRUE);
 
 		if (!optional.isPresent()) {
 			try {
 				binaryFileService.save(BinaryFile.getBinaryFile("/images/logo_default.png", "image/png", true, false, false));
+				LOGGER.info("Seeding default logo...");
+				updated = true;
 			} catch (IOException | URISyntaxException e) {
-				LOGGER.error("Seeding Logo Image", e);
+				LOGGER.error("Error Seeding Logo Image", e);
 			}
 		}
 
@@ -74,13 +84,17 @@ public class SeedDataServiceImpl implements SeedDataService {
 				binaryFileService.save(BinaryFile.getBinaryFile("/images/mountain-bikers.jpg", "image/jpeg", false, true, false));
 				binaryFileService.save(BinaryFile.getBinaryFile("/images/open_water.jpg", "image/jpeg", false, true, false));
 				binaryFileService.save(BinaryFile.getBinaryFile("/images/trail-runners.jpg", "image/jpeg", false, true, false));
+
+				updated = true;
 			} catch (IOException | URISyntaxException e) {
-				LOGGER.error("Saving Default Scrollers", e);
+				LOGGER.error("Error Saving Default Scrollers", e);
 			}
 		}
+
+		return updated;
 	}
 
-	private void createSetting(String name, String value) {
+	private boolean createSetting(String name, String value) {
 		final Optional<Setting> optional = settingService.findSettingByName(name);
 
 		if (!optional.isPresent()) {
@@ -91,6 +105,9 @@ public class SeedDataServiceImpl implements SeedDataService {
 			setting.setValue(value);
 
 			settingService.save(setting);
+			return true;
 		}
+
+		return false;
 	}
 }
