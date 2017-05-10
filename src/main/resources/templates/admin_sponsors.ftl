@@ -25,41 +25,39 @@
   </div>
 </div>
 
-<div class="container" style="margin-top:30px">
-  <div class="col-md-4 col-md-offset-4">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title"><strong>Add Sponsor</strong></h3>
-        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#"></a></div>
-      </div>
-
-      <div class="panel-body">
-      <form accept-charset="UTF-8" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
-        <div style="margin-bottom: 12px" class="input-group">
-          <span class="input-group-addon">Name</span>
-          <input name="name" type="inpt" class="form-control">
-        </div>
-
-        <div style="margin-bottom: 12px" class="input-group">
-          <span class="input-group-addon">Description</span>
-          <input name="description" type="input" class="form-control">
-        </div>
-
-        <div style="margin-bottom: 12px" class="input-group">
-          <span class="input-group-addon">URL</span>
-          <input name="url" type="input" class="form-control" size="80">
-        </div>
-
-        <input name="file" type="file">
-
-        <hr style="margin-top:10px;margin-bottom:10px;" >
-
-        <button type="submit" class="btn">Submit</button>
-      </form>
-      </div>
+<div class="container" style="margin-bottom:10px">
+<h2>Add Sponsor</h2>
+<form accept-charset="UTF-8" class="form-horizontal" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Name</label>
+    <div class="col-sm-10">
+      <input type="input" class="form-control" maxlength="50" name="name" id="name" placeholder="">
     </div>
   </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description</label>
+    <div class="col-sm-10"> 
+      <input type="input" class="form-control" maxlength="200" name="description" id="description" placeholder="">
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="url">URL</label>
+    <div class="col-sm-10">
+      <input type="url" class="form-control" maxlength="50" name="url" id="url" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input name="file" type="file">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</form>
 </div>
 
 <#include "footer.ftl">
