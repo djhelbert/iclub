@@ -192,19 +192,20 @@
             <ul class="nav navbar-nav">
               <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <li><a href="/content?name=ABOUT"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
-              <li><a href="/sponsors">Sponsors</a></li>
+              <li><a href="/sponsors"><span class="glyphicon glyphicon-star"></span> Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Admin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="/admin/users">Users</a></li>
                   <li><a href="/admin/email">Send Email</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="/admin/about">About</a></li>
-                  <li><a href="/admin/sponsors">Sponsors</a></li>
-                  <li><a href="/admin/terms">Terms of Use</a></li>
+                  <li><a href="/admin/images">Images</a></li>
                   <li><a href="/admin/privacy">Privacy Policy</a></li>
                   <li><a href="/admin/settings">Settings</a></li>
+                  <li><a href="/admin/sponsors">Sponsors</a></li>
+                  <li><a href="/admin/terms">Terms of Use</a></li>
                 </ul>
               </li>
               </#if>

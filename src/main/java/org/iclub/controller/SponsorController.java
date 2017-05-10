@@ -33,25 +33,25 @@ public class SponsorController {
     @RequestMapping(value = "/admin/sponsors", method = RequestMethod.POST)
     public String handleSponsorCreateForm(@RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("url") String url, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         try {
-        	BinaryFile binaryFile = new BinaryFile();
-        	binaryFile.setName(file.getOriginalFilename());
-        	binaryFile.setMimetype(file.getContentType());
+            BinaryFile binaryFile = new BinaryFile();
+            binaryFile.setName(file.getOriginalFilename());
+            binaryFile.setMimetype(file.getContentType());
 
-        	try {
-				binaryFile.setData(file.getBytes());
+            try {
+                binaryFile.setData(file.getBytes());
 
-	        	Sponsor sponsor = new Sponsor();
-	        	sponsor.setName(name);
-	        	sponsor.setDescription(description);
-	        	sponsor.setUrl(url);
-	        	sponsor.setBinaryFile(binaryFile);
-	        	sponsorService.save(sponsor);
-			} catch (IOException e) {
-				LOGGER.error("Error setting binary file data.", e);
-			}
+                Sponsor sponsor = new Sponsor();
+                sponsor.setName(name);
+                sponsor.setDescription(description);
+                sponsor.setUrl(url);
+                sponsor.setBinaryFile(binaryFile);
+                sponsorService.save(sponsor);
+            } catch (IOException e) {
+                LOGGER.error("Error setting binary file data.", e);
+            }
         } catch (Exception e) {
-        	LOGGER.error("Save Sponsor Error", e);
-        	redirectAttributes.addFlashAttribute("error", "Unable to save sponsor.");
+            LOGGER.error("Save Sponsor Error", e);
+            redirectAttributes.addFlashAttribute("error", "Unable to save sponsor.");
         }
 
         return "redirect:/admin/sponsors";
@@ -59,7 +59,7 @@ public class SponsorController {
 
     @RequestMapping(value ="/admin/sponsors/delete", method = RequestMethod.GET)
     public ModelAndView deleteSponsor(@RequestParam("id") String id) {
-    	sponsorService.delete(new Long(id));
+        sponsorService.delete(new Long(id));
         return new ModelAndView("admin_sponsors", "sponsors", sponsorService.findAll());
     }
 
@@ -72,5 +72,4 @@ public class SponsorController {
     public ModelAndView getSponsorsPage() {
         return new ModelAndView("sponsors", "sponsors", sponsorService.findAll());
     }
-
 }

@@ -10,18 +10,18 @@
   <div class="row">
     <div class="col-md-12">
         <#list sponsors as sponsor>
-		<div class="testiminial-block">
-			<div class="row">
-				<div class="col-md-2 col-sm-2"><a href="${sponsor.url!'#'}"><img src="/file?id=${sponsor.binaryFile.id!''}" alt="Logo" class="img-responsive"/></a></div>
-				<div class="col-md-8 col-sm-8 testimonial-content">
-					<h3>${sponsor.name!''}</h3>
-					<p>${sponsor.description!''}</p>
-				</div>
-				<div class="col-md-2 col-sm-2"><button type="button" onclick="location.href='/admin/sponsors/delete?id=${sponsor.id}'" class="btn">Delete</button></div>
-			</div>
-		</div>
-		</#list>
-	</div>
+        <div class="testiminial-block">
+            <div class="row">
+                <div class="col-md-2 col-sm-2"><a href="${sponsor.url!'#'}"><img src="/file?id=${sponsor.binaryFile.id!''}" alt="Logo" class="img-responsive"/></a></div>
+                <div class="col-md-8 col-sm-8 testimonial-content">
+                    <h3>${sponsor.name!''}</h3>
+                    <p>${sponsor.description!''}</p>
+                </div>
+                <div class="col-md-2 col-sm-2"><button type="button" onclick="location.href='/admin/sponsors/delete?id=${sponsor.id}'" class="btn">Delete</button></div>
+            </div>
+        </div>
+        </#list>
+    </div>
   </div>
 </div>
 
