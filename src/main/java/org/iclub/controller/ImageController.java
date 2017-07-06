@@ -20,7 +20,7 @@ public class ImageController {
     @RequestMapping(value = "/admin/images", method = RequestMethod.GET)
     public ModelAndView getAdminImagesPage() {
         final ModelAndView mv = new ModelAndView("admin_images");
-        mv.addObject("logo", binaryFileService.findBinaryFileByLogo(Boolean.TRUE));
+        mv.addObject("logo", binaryFileService.findBinaryFileByLogo(Boolean.TRUE).get());
         mv.addObject("scrollers", binaryFileService.findByScroller(Boolean.TRUE));
 
         return mv;

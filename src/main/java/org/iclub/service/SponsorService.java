@@ -6,8 +6,8 @@ import org.iclub.model.Sponsor;
 
 public interface SponsorService {
 
-	public Sponsor save(Sponsor sponsor);
-	public void delete(Long id);
-	List<Sponsor> findAll();
+  public Sponsor save(Sponsor sponsor);
+  public void delete(Long id);
+  List<Sponsor> findAll();
 
 }
