@@ -25,18 +25,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @ConditionalOnWebApplication
 public class SettingController {
-	private final FreemarkerConfigService freemarkerConfigService;
-	private final SettingService settingService;
-	private final SettingValidator settingValidator;
+    private final FreemarkerConfigService freemarkerConfigService;
+    private final SettingService settingService;
+    private final SettingValidator settingValidator;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SettingController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SettingController.class);
 
-	@Autowired
-	public SettingController(FreemarkerConfigService freemarkerConfigService, SettingService settingService, SettingValidator settingValidator) {
-		this.freemarkerConfigService = freemarkerConfigService;
-		this.settingService = settingService;
-		this.settingValidator = settingValidator;
-	}
+    @Autowired
+    public SettingController(FreemarkerConfigService freemarkerConfigService, SettingService settingService,
+            SettingValidator settingValidator) {
+        this.freemarkerConfigService = freemarkerConfigService;
+        this.settingService = settingService;
+        this.settingValidator = settingValidator;
+    }
 
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
@@ -49,51 +50,52 @@ public class SettingController {
     }
 
     @RequestMapping(value = "/admin/settings", method = RequestMethod.POST)
-    public String handleUpdateSettingForm(@Valid @ModelAttribute("form") SettingForm form, BindingResult bindingResult) {
+    public String handleUpdateSettingForm(@Valid @ModelAttribute("form") SettingForm form,
+            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "admin_settings";
         }
 
-		createSetting(SettingService.TITLE, form.getTitle());
-		createSetting(SettingService.DESCRIPTION, form.getDescription());
+        createSetting(SettingService.TITLE, form.getTitle());
+        createSetting(SettingService.DESCRIPTION, form.getDescription());
 
-		createSetting(SettingService.FACEBOOK, form.getFacebook());
-		createSetting(SettingService.TWITTER, form.getTwitter());
-		createSetting(SettingService.PINTEREST, form.getPinterest());
-		createSetting(SettingService.YOUTUBE, form.getYoutube());
-		createSetting(SettingService.STRAVA, form.getStrava());
+        createSetting(SettingService.FACEBOOK, form.getFacebook());
+        createSetting(SettingService.TWITTER, form.getTwitter());
+        createSetting(SettingService.PINTEREST, form.getPinterest());
+        createSetting(SettingService.YOUTUBE, form.getYoutube());
+        createSetting(SettingService.STRAVA, form.getStrava());
 
-		createSetting(SettingService.CONTACT_ADDRESS_LINE1, form.getContactAddressLine1());
-		createSetting(SettingService.CONTACT_ADDRESS_LINE2, form.getContactAddressLine2());
-		createSetting(SettingService.CONTACT_EMAIL, form.getContactEmail());
-		createSetting(SettingService.CONTACT_CITY, form.getContactCity());
-		createSetting(SettingService.CONTACT_STATE, form.getContactState());
-		createSetting(SettingService.CONTACT_ZIP_CODE, form.getContactZipCode());
-		createSetting(SettingService.CONTACT_PHONE, form.getContactPhone());
+        createSetting(SettingService.CONTACT_ADDRESS_LINE1, form.getContactAddressLine1());
+        createSetting(SettingService.CONTACT_ADDRESS_LINE2, form.getContactAddressLine2());
+        createSetting(SettingService.CONTACT_EMAIL, form.getContactEmail());
+        createSetting(SettingService.CONTACT_CITY, form.getContactCity());
+        createSetting(SettingService.CONTACT_STATE, form.getContactState());
+        createSetting(SettingService.CONTACT_ZIP_CODE, form.getContactZipCode());
+        createSetting(SettingService.CONTACT_PHONE, form.getContactPhone());
 
         freemarkerConfigService.refresh();
 
         return "redirect:/";
     }
 
-	private void createSetting(String name, String value) {
-		final Optional<Setting> optional = settingService.findSettingByName(name);
+    private void createSetting(String name, String value) {
+        final Optional<Setting> optional = settingService.findSettingByName(name);
 
-		if (!optional.isPresent()) {
-			LOGGER.debug(name + " set to " + value);
+        if (!optional.isPresent()) {
+            LOGGER.debug(name + " set to " + value);
 
-			final Setting setting = new Setting();
-			setting.setName(name);
-			setting.setValue(value == null ? "" : value);
+            final Setting setting = new Setting();
+            setting.setName(name);
+            setting.setValue(value == null ? "" : value);
 
-			settingService.save(setting);
-		} else {
-			LOGGER.debug(name + " set to " + value);
+            settingService.save(setting);
+        } else {
+            LOGGER.debug(name + " set to " + value);
 
-			Setting setting = optional.get();
-			setting.setValue(value);
+            Setting setting = optional.get();
+            setting.setValue(value);
 
-			settingService.save(setting);
-		}
-	}
+            settingService.save(setting);
+        }
+    }
 }

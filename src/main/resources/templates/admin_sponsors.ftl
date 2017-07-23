@@ -26,7 +26,7 @@
 </div>
 
 <div class="container" style="margin-bottom:10px">
-<h2>Add Sponsor</h2>
+<h3>Add Sponsor</h3>
 <form accept-charset="UTF-8" class="form-horizontal" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   <div class="form-group">

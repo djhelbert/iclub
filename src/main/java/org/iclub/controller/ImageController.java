@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.iclub.model.BinaryFile;
 import org.iclub.service.BinaryFileService;
+import org.iclub.service.FreemarkerConfigService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
@@ -20,11 +21,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ImageController {
 
     private BinaryFileService binaryFileService;
+    private FreemarkerConfigService freemarkerConfigService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageController.class);
 
-    public ImageController(BinaryFileService binaryFileService) {
+    public ImageController(FreemarkerConfigService freemarkerConfigService, BinaryFileService binaryFileService) {
         this.binaryFileService = binaryFileService;
+        this.freemarkerConfigService = freemarkerConfigService;
     }
 
     @RequestMapping(value = "/admin/images", method = RequestMethod.GET)
@@ -39,6 +42,7 @@ public class ImageController {
     @RequestMapping(value = "/admin/images/delete", method = RequestMethod.GET)
     public String deleteImage(@RequestParam("id") String id) {
         binaryFileService.delete(new Long(id));
+        freemarkerConfigService.refresh();
         return "redirect:/admin/images";
     }
 
@@ -51,6 +55,7 @@ public class ImageController {
                 BinaryFile binaryFile = optional.get();
                 binaryFile.setName(file.getOriginalFilename());
                 binaryFile.setMimetype(file.getContentType());
+                binaryFile.setData(file.getBytes());
                 binaryFile.setLogo(Boolean.TRUE);
                 binaryFile.setScroller(Boolean.FALSE);
                 binaryFile.setResource(Boolean.FALSE);
@@ -73,11 +78,13 @@ public class ImageController {
             BinaryFile binaryFile = new BinaryFile();
             binaryFile.setName(file.getOriginalFilename());
             binaryFile.setMimetype(file.getContentType());
+            binaryFile.setData(file.getBytes());
             binaryFile.setLogo(Boolean.FALSE);
             binaryFile.setScroller(Boolean.TRUE);
             binaryFile.setResource(Boolean.FALSE);
 
             binaryFileService.save(binaryFile);
+            freemarkerConfigService.refresh();
         } catch (Exception e) {
             LOGGER.error("Save Image Error", e);
             redirectAttributes.addFlashAttribute("error", "Unable to save image.");
