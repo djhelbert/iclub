@@ -42,7 +42,9 @@ public class ImageController {
     @RequestMapping(value = "/admin/images/delete", method = RequestMethod.GET)
     public String deleteImage(@RequestParam("id") String id) {
         binaryFileService.delete(new Long(id));
+
         freemarkerConfigService.refresh();
+
         return "redirect:/admin/images";
     }
 
@@ -61,6 +63,8 @@ public class ImageController {
                 binaryFile.setResource(Boolean.FALSE);
 
                 binaryFileService.save(binaryFile);
+
+                freemarkerConfigService.refresh();
             } else {
                 LOGGER.warn("No logo image found");
             }
@@ -84,6 +88,7 @@ public class ImageController {
             binaryFile.setResource(Boolean.FALSE);
 
             binaryFileService.save(binaryFile);
+
             freemarkerConfigService.refresh();
         } catch (Exception e) {
             LOGGER.error("Save Image Error", e);
