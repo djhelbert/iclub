@@ -14,31 +14,36 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class BinaryFileServiceImpl implements BinaryFileService {
 
-	@Autowired
-	private BinaryFileRepository binaryFileRepository;
+    @Autowired
+    private BinaryFileRepository binaryFileRepository;
 
-	@Override
-	public BinaryFile save(BinaryFile binaryFile) {
-		return binaryFileRepository.save(binaryFile);
-	}
+    @Override
+    public void delete(Long id) {
+        binaryFileRepository.delete(id);
+    }
 
-	@Override
-	public BinaryFile getBinaryFile(Long id) {
-		return binaryFileRepository.findOne(id);
-	}
+    @Override
+    public BinaryFile save(BinaryFile binaryFile) {
+        return binaryFileRepository.save(binaryFile);
+    }
 
-	@Override
-	public Optional<BinaryFile> findBinaryFileByLogo(Boolean logo) {
-		return binaryFileRepository.findBinaryFileByLogo(logo);
-	}
+    @Override
+    public BinaryFile getBinaryFile(Long id) {
+        return binaryFileRepository.findOne(id);
+    }
 
-	@Override
-	public List<BinaryFile> findByScroller(Boolean scroller) {
-		return binaryFileRepository.findByScroller(scroller);
-	}
+    @Override
+    public Optional<BinaryFile> findBinaryFileByLogo(Boolean logo) {
+        return binaryFileRepository.findBinaryFileByLogo(logo);
+    }
 
-	@Override
-	public List<BinaryFile> findByResource(Boolean resource) {
-		return binaryFileRepository.findByResource(resource);
-	}
+    @Override
+    public List<BinaryFile> findByScroller(Boolean scroller) {
+        return binaryFileRepository.findByScroller(scroller);
+    }
+
+    @Override
+    public List<BinaryFile> findByResource(Boolean resource) {
+        return binaryFileRepository.findByResource(resource);
+    }
 }
