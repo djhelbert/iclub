@@ -20,46 +20,53 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
-	@Autowired
-	public UserServiceImpl(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-	@Override
-	public Optional<User> getUserById(long id) {
-		LOGGER.debug("Getting user={}", id);
+    @Override
+    public void delete(Long id) {
+        LOGGER.debug("Deleting user={}", id);
 
-		return Optional.ofNullable(userRepository.findOne(id));
-	}
+        userRepository.delete(id);
+    }
 
-	@Override
-	public Optional<User> getUserByEmail(String email) {
-		LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
+    @Override
+    public Optional<User> getUserById(long id) {
+        LOGGER.debug("Getting user={}", id);
 
-		return userRepository.findUserByEmail(email);
-	}
+        return Optional.ofNullable(userRepository.findOne(id));
+    }
 
-	@Override
-	public List<User> findByRole(Role role) {
-		LOGGER.debug("Getting user by role={}", role.name());
+    @Override
+    public Optional<User> getUserByEmail(String email) {
+        LOGGER.debug("Getting user by email={}", email.replaceFirst("@.*", "@***"));
 
-		return userRepository.findByRole(role);
-	}
+        return userRepository.findUserByEmail(email);
+    }
 
-	@Override
-	public Collection<User> getAllUsers() {
-		LOGGER.debug("Getting all users");
+    @Override
+    public List<User> findByRole(Role role) {
+        LOGGER.debug("Getting user by role={}", role.name());
 
-		return userRepository.findAll(new Sort("email"));
-	}
+        return userRepository.findByRole(role);
+    }
 
-	@Override
-	public User save(UserForm userForm) {
-		return userRepository.save(userForm.getUser());
-	}
+    @Override
+    public Collection<User> getAllUsers() {
+        LOGGER.debug("Getting all users");
+
+        return userRepository.findAll(new Sort("email"));
+    }
+
+    @Override
+    public User save(UserForm userForm) {
+        return userRepository.save(userForm.getUser());
+    }
 
 }

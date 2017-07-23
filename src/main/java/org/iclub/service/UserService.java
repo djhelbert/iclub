@@ -10,14 +10,11 @@ import org.iclub.model.UserForm;
 
 public interface UserService {
 
-	Optional<User> getUserById(long id);
-
-	Optional<User> getUserByEmail(String email);
-
-	List<User> findByRole(Role role);
-
-	Collection<User> getAllUsers();
-
-	User save(UserForm userForm);
+    Optional<User> getUserById(long id);
+    Optional<User> getUserByEmail(String email);
+    List<User> findByRole(Role role);
+    Collection<User> getAllUsers();
+    User save(UserForm userForm);
+    void delete(Long id);
 
 }
