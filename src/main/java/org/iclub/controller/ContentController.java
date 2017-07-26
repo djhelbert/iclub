@@ -24,11 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 @ConditionalOnWebApplication
 public class ContentController {
 
-	private ContentService contentService;
-	private ContentValidator contentValidator;
+    private ContentService contentService;
+    private ContentValidator contentValidator;
 
-	private static final String CONTENT = "CONTENT";
-	
+    private static final String CONTENT = "CONTENT";
+
     @Autowired
     public ContentController(ContentService contentService, ContentValidator contentValidator) {
         this.contentService = contentService;
@@ -49,14 +49,14 @@ public class ContentController {
         Optional<Content> content = contentService.getContentByName(ContentService.PRIVACY);
 
         if (content.isPresent()) {
-        	Content aboutContent = content.get();
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = content.get();
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         } else {
-        	Content aboutContent = new Content();
-        	aboutContent.setName(ContentService.PRIVACY);
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = new Content();
+            aboutContent.setName(ContentService.PRIVACY);
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         }
 
         return "redirect:/content?name=PRIVACY";
@@ -71,14 +71,14 @@ public class ContentController {
         Optional<Content> content = contentService.getContentByName(ContentService.TERMS);
 
         if (content.isPresent()) {
-        	Content aboutContent = content.get();
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = content.get();
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         } else {
-        	Content aboutContent = new Content();
-        	aboutContent.setName(ContentService.TERMS);
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = new Content();
+            aboutContent.setName(ContentService.TERMS);
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         }
 
         return "redirect:/content?name=TERMS";
@@ -93,14 +93,14 @@ public class ContentController {
         Optional<Content> content = contentService.getContentByName(ContentService.ABOUT);
 
         if (content.isPresent()) {
-        	Content aboutContent = content.get();
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = content.get();
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         } else {
-        	Content aboutContent = new Content();
-        	aboutContent.setName(ContentService.ABOUT);
-        	aboutContent.setContentText(form.getContent());
-        	contentService.save(aboutContent);
+            Content aboutContent = new Content();
+            aboutContent.setName(ContentService.ABOUT);
+            aboutContent.setContentText(form.getContent());
+            contentService.save(aboutContent);
         }
 
         return "redirect:/content?name=ABOUT";
@@ -108,25 +108,25 @@ public class ContentController {
 
     @RequestMapping(value = "/admin/privacy", method = RequestMethod.GET)
     public ModelAndView getPrivacyContent() {
-    	final Optional<Content> optional = contentService.getContentByName(ContentService.PRIVACY);
+        final Optional<Content> optional = contentService.getContentByName(ContentService.PRIVACY);
         return new ModelAndView("admin_privacy", CONTENT, optional.isPresent() ? optional.get().getContentText() : "");
     }
 
     @RequestMapping(value = "/admin/terms", method = RequestMethod.GET)
     public ModelAndView getTermsContent() {
-    	final Optional<Content> optional = contentService.getContentByName(ContentService.TERMS);
+        final Optional<Content> optional = contentService.getContentByName(ContentService.TERMS);
         return new ModelAndView("admin_terms", CONTENT, optional.isPresent() ? optional.get().getContentText() : "");
     }
 
     @RequestMapping(value = "/admin/about", method = RequestMethod.GET)
     public ModelAndView getAboutContent() {
-    	final Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
+        final Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
         return new ModelAndView("admin_about", CONTENT, optional.isPresent() ? optional.get().getContentText() : "");
     }
 
     @RequestMapping(value = "/content", method = RequestMethod.GET)
     public ModelAndView getContent(@RequestParam("name") String name) {
-    	final Optional<Content> optional = contentService.getContentByName(name);
+        final Optional<Content> optional = contentService.getContentByName(name);
         return new ModelAndView("content", CONTENT, optional.isPresent() ? optional.get().getContentText() : "");
     }
 }

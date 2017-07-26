@@ -216,6 +216,7 @@
                 <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               </#if>
               <#if currentUser??>
+                <li><a href="/update_user"><span class="glyphicon glyphicon-user"></span> Update</a></li>
                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"> Logout</a></li>
               </#if>
             </ul>

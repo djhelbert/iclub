@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.iclub.model.Role;
+import org.iclub.model.UpdateUserForm;
 import org.iclub.model.User;
 import org.iclub.model.UserForm;
 
@@ -15,6 +16,7 @@ public interface UserService {
     List<User> findByRole(Role role);
     Collection<User> getAllUsers();
     User save(UserForm userForm);
+    User save(UpdateUserForm userForm, Long id, Role role);
     void delete(Long id);
 
 }

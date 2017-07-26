@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.iclub.model.Role;
 import org.iclub.model.User;
 import org.iclub.model.UserForm;
+import org.iclub.model.UpdateUserForm;
 import org.iclub.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,6 +63,11 @@ public class UserServiceImpl implements UserService {
         LOGGER.debug("Getting all users");
 
         return userRepository.findAll(new Sort("email"));
+    }
+
+    @Override
+    public User save(UpdateUserForm userForm, Long id, Role role) {
+        return userRepository.save(userForm.getUser(id, role));
     }
 
     @Override

@@ -3,7 +3,7 @@
 <#import "/spring.ftl" as spring>
 <@spring.bind "form" />
 
-<form role="form" name="form" action="/register" method="post">
+<form role="form" name="form" action="/update_user" method="post">
 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 <#if (spring.status.errors.allErrors?size > 0) >
@@ -18,7 +18,7 @@
 
 <div class="container" style="margin-top:10px">
 <div class="form-horizontal" style="margin-bottom:10px">
-  <h2>Register</h2>
+  <h2>Update ${currentUser.user.firstName}</h2>
   <form role="form" name="form" action="" method="POST">
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email *</label>
@@ -67,10 +67,6 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="zipCode">Zip Code</label>
       <div class="col-sm-10"><@spring.formInput "form.zipCode" "class='form-control' maxlength='5'" "text"/></div>
-    </div>
-
-    <div class="checkbox">
-      <label><input name="agree" type="checkbox">I agree to the terms of use</label>
     </div>
 
     <div>&nbsp;</div>

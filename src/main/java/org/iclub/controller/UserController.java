@@ -1,9 +1,6 @@
 package org.iclub.controller;
 
-import java.util.NoSuchElementException;
-
 import javax.validation.Valid;
-
 import org.iclub.model.UserForm;
 import org.iclub.service.UserService;
 import org.iclub.validator.UserValidator;
@@ -15,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,11 +32,6 @@ public class UserController {
     @InitBinder("form")
     public void initBinder(WebDataBinder binder) {
         binder.addValidators(userCreateFormValidator);
-    }
-
-    @RequestMapping("/user/{id}")
-    public ModelAndView getUserPage(@PathVariable Long id) {
-        return new ModelAndView("user", "user", userService.getUserById(id).orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)

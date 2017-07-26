@@ -22,12 +22,12 @@ public class UsersController {
 
     @RequestMapping("/admin/users")
     public ModelAndView getUsersPage() {
-        return new ModelAndView("users", "users", userService.getAllUsers());
+        return new ModelAndView("admin_users", "users", userService.getAllUsers());
     }
 
     @RequestMapping(value ="/admin/users/delete", method = RequestMethod.GET)
     public ModelAndView deleteSponsor(@RequestParam("id") String id) {
         userService.delete(new Long(id));
-        return new ModelAndView("users", "users", userService.getAllUsers());
+        return new ModelAndView("admin_users", "users", userService.getAllUsers());
     }
 }
