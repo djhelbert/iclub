@@ -1,5 +1,6 @@
 package org.iclub.validator;
 
+import org.iclub.model.AdminUpdateUserForm;
 import org.iclub.model.UpdateUserForm;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -11,7 +12,7 @@ public class UserUpdateValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> aClass) {
-        return UpdateUserForm.class.equals(aClass);
+        return UpdateUserForm.class.equals(aClass) || AdminUpdateUserForm.class.equals(aClass);
     }
 
     @Override

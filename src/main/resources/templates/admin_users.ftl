@@ -29,7 +29,7 @@
                                             <#if !user.admin >
                                             <button class="btn btn-default" value="left" type="button" onclick="window.location.href='/admin/users/delete?id=${user.id}'"><i class="fa fa-fw s fa-remove"></i>Delete</button>
                                             </#if>
-                                            <button class="btn btn-default" value="right" type="button"><i class="fa fa-fw fa-cog"></i>Edit</button>
+                                            <button class="btn btn-default" value="right" type="button" onclick="window.location.href='/admin/update_user?id=${user.id}'"><i class="fa fa-fw fa-cog"></i>Edit</button>
                                         </div>
                                     </td>
                                 </tr>

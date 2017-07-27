@@ -3,6 +3,7 @@ package org.iclub.controller;
 import java.util.Optional;
 import javax.validation.Valid;
 
+import org.iclub.model.AdminUpdateUserForm;
 import org.iclub.model.CurrentUser;
 import org.iclub.model.UpdateUserForm;
 import org.iclub.model.User;
@@ -22,19 +23,20 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @ConditionalOnWebApplication
-public class UpdateUserController {
+public class AdminUpdateUserController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(UpdateUserController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdminUpdateUserController.class);
 
     private final UserService userService;
     private final UserUpdateValidator userUpdateFormValidator;
 
     @Autowired
-    public UpdateUserController(UserService userService, UserUpdateValidator userUpdateFormValidator) {
+    public AdminUpdateUserController(UserService userService, UserUpdateValidator userUpdateFormValidator) {
         this.userService = userService;
         this.userUpdateFormValidator = userUpdateFormValidator;
     }
@@ -44,39 +46,37 @@ public class UpdateUserController {
         binder.addValidators(userUpdateFormValidator);
     }
 
-    @RequestMapping(value = "/update_user", method = RequestMethod.GET)
-    public ModelAndView getUserCreatePage() {
-        final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        final Optional<User> option = userService.getUserByEmail( ((CurrentUser)auth.getPrincipal()).getUsername() );
+    @RequestMapping(value = "/admin/update_user", method = RequestMethod.GET)
+    public ModelAndView getUserCreatePage(@RequestParam("id") String id) {
+        final Optional<User> option = userService.getUserById(Long.parseLong(id));
         UpdateUserForm form = null;
 
         if (option.isPresent()) {
-            form = new UpdateUserForm(option.get());
+            form = new AdminUpdateUserForm(option.get());
         } else {
-            LOGGER.warn(auth.getPrincipal().toString() + " not found");
+            LOGGER.warn(id + " not found");
         }
 
-        return new ModelAndView("user_update", "form", form);
+        return new ModelAndView("admin_user_update", "form", form);
     }
 
-    @RequestMapping(value = "/update_user", method = RequestMethod.POST)
-    public String handleUserCreateForm(@Valid @ModelAttribute("form") UpdateUserForm form, BindingResult bindingResult) {
+    @RequestMapping(value = "/admin/update_user", method = RequestMethod.POST)
+    public String handleUserCreateForm(@Valid @ModelAttribute("form") AdminUpdateUserForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "user_update";
+            return "admin_user_update";
         }
 
         try {
-            final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            final Optional<User> option = userService.getUserByEmail( ((CurrentUser)auth.getPrincipal()).getUsername() );
+            final Optional<User> option = userService.getUserByEmail( form.getEmail() );
 
             if (option.isPresent()) {
                 userService.save(form, option.get().getId(), option.get().getRole());
             }
         } catch (DataIntegrityViolationException e) {
-            LOGGER.error("Update User", e);
-            return "user_update";
+            LOGGER.error("Admin Update User", e);
+            return "admin_user_update";
         }
 
-        return "redirect:/update_user";
+        return "redirect:/admin/users";
     }
 }

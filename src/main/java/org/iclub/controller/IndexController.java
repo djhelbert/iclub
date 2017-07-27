@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @ConditionalOnWebApplication
 public class IndexController {
 
-	@RequestMapping("/")
-	String index() {
-		return "index";
-	}
+    @RequestMapping("/")
+    String index() {
+        return "index";
+    }
 }
