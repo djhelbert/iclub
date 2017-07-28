@@ -24,9 +24,9 @@
       <label class="control-label col-sm-2" for="email">Role *</label>
       <div class="col-sm-10">
         <select name="role" class='form-control'>
-          <option value="USER">USER</option>
-          <option value="ADMIN">ADMIN</option>
-          <option value="DISABLED">DISABLED</option>
+          <option value="USER" <#if form.role == "USER">SELECTED</#if>>USER</option>
+          <option value="ADMIN" <#if form.role == "ADMIN">SELECTED</#if>>ADMIN</option>
+          <option value="DISABLED" <#if form.role == "DISABLED">SELECTED</#if>>DISABLED</option>
         </select>
       </div>
     </div>

@@ -3,9 +3,6 @@
 <#import "/spring.ftl" as spring>
 <@spring.bind "form" />
 
-<form role="form" name="form" action="/update_user" method="post">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
 <#if (spring.status.errors.allErrors?size > 0) >
 <div class="container" style="margin-top:10px">
     <div class="alert alert-danger"><a class="close" data-dismiss="alert" href="#">×</a>
@@ -16,9 +13,11 @@
 </div>
 </#if>
 
+<form role="form" name="form" action="/update_user" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <div class="container" style="margin-top:10px">
-<div class="form-horizontal" style="margin-bottom:10px">
-  <h2>Update ${currentUser.user.firstName}</h2>
+  <div class="form-horizontal" style="margin-bottom:10px">
+  <h2>Update My Profile</h2>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email">Email *</label>
       <div class="col-sm-10"><@spring.formInput "form.email" "class='form-control'" "email"/></div>
@@ -71,8 +70,8 @@
     <div>&nbsp;</div>
 
     <button type="submit" class="btn btn-default">Submit</button>
-</form>
-</div>
+  </form>
+  </div>
 </div>
 
 <#include "footer.ftl">

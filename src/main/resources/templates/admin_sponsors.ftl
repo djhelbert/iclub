@@ -17,7 +17,7 @@
                     <h3>${sponsor.name!''}</h3>
                     <p>${sponsor.description!''}</p>
                 </div>
-                <div class="col-md-2 col-sm-2"><button type="button" onclick="location.href='/admin/sponsors/delete?id=${sponsor.id}'" class="btn">Delete</button></div>
+                <div class="col-md-2 col-sm-2"><button type="button" class="btn btn-default" onclick="location.href='/admin/sponsors/delete?id=${sponsor.id}'" class="btn"><i class="fa fa-fw s fa-remove"></i> Delete</button></div>
             </div>
         </div>
         </#list>
@@ -30,19 +30,19 @@
 <form accept-charset="UTF-8" class="form-horizontal" method="POST" enctype="multipart/form-data">
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="name">Name</label>
+    <label class="control-label col-sm-2" for="name">Name *</label>
     <div class="col-sm-10">
       <input type="input" class="form-control" maxlength="50" name="name" id="name" placeholder="">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="description">Description</label>
+    <label class="control-label col-sm-2" for="description">Description *</label>
     <div class="col-sm-10"> 
       <input type="input" class="form-control" maxlength="200" name="description" id="description" placeholder="">
     </div>
   </div>
     <div class="form-group">
-    <label class="control-label col-sm-2" for="url">URL</label>
+    <label class="control-label col-sm-2" for="url">URL *</label>
     <div class="col-sm-10">
       <input type="url" class="form-control" maxlength="50" name="url" id="url" placeholder="">
     </div>
