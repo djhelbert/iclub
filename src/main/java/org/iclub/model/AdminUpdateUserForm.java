@@ -11,7 +11,11 @@ public class AdminUpdateUserForm extends UpdateUserForm {
     public AdminUpdateUserForm(User user) {
         super(user);
         this.id = user.getId();
-        this.role = user.getRole() == Role.ADMIN ? "ADMIN" : "USER";
+        if (Role.DISABLED == user.getRole()) {
+            this.role = "DISABLED";
+        } else {
+            this.role = user.getRole() == Role.ADMIN ? "ADMIN" : "USER";
+        }
     }
 
     public Long getId() {
@@ -34,7 +38,11 @@ public class AdminUpdateUserForm extends UpdateUserForm {
     public User getUser(Long id, Role role) {
         final User user = super.getUser(id, role);
         user.setId(id);
-        user.setRole("ADMIN".equalsIgnoreCase(this.role) ? Role.ADMIN : Role.USER);
+        if ("DISABLED".equalsIgnoreCase(this.role)) {
+            user.setRole(Role.DISABLED);
+        } else {
+            user.setRole("ADMIN".equalsIgnoreCase(this.role) ? Role.ADMIN : Role.USER);
+        }
         return user;
     }
 }
