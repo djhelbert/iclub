@@ -28,12 +28,12 @@
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <input name="file" type="file">
+      <input name="file" type="file" id="logo_file">
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default"  onclick="logoButtonSubmitClicked(event)">Submit</button>
     </div>
   </div>
 </form>
@@ -70,15 +70,31 @@
   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <input name="file" type="file">
+      <input name="file" type="file" id="scroller_file">
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" class="btn btn-default" onclick="scrollerButtonSubmitClicked(event)">Submit</button>
     </div>
   </div>
 </form>
 </div>
+
+<script>
+    function scrollerButtonSubmitClicked(event) {
+        if (!document.getElementById("scroller_file").value) {
+            event.preventDefault();
+            alert("Please choose an image file.");
+        }
+    }
+
+    function logoButtonSubmitClicked(event) {
+        if (!document.getElementById("logo_file").value) {
+            event.preventDefault();
+            alert("Please choose an image file.");
+        }
+    }
+</script>
 
 <#include "footer.ftl">

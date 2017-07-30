@@ -32,32 +32,41 @@
   <div class="form-group">
     <label class="control-label col-sm-2" for="name">Name *</label>
     <div class="col-sm-10">
-      <input type="input" class="form-control" maxlength="50" name="name" id="name" placeholder="">
+      <input type="input" class="form-control" maxlength="50" name="name" id="name" placeholder="" required>
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="description">Description *</label>
     <div class="col-sm-10"> 
-      <input type="input" class="form-control" maxlength="200" name="description" id="description" placeholder="">
+      <input type="input" class="form-control" maxlength="200" name="description" id="description" placeholder="" required>
     </div>
   </div>
     <div class="form-group">
     <label class="control-label col-sm-2" for="url">URL *</label>
     <div class="col-sm-10">
-      <input type="url" class="form-control" maxlength="50" name="url" id="url" placeholder="">
+      <input type="url" class="form-control" maxlength="50" name="url" id="url" placeholder="" required>
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <input name="file" type="file">
+      <input name="file" id="file" type="file">
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Submit</button>
+      <button type="submit" onclick="buttonSubmitClicked(event)" class="btn btn-default">Submit</button>
     </div>
   </div>
 </form>
 </div>
+
+<script>
+    function buttonSubmitClicked(event) {
+        if (!document.getElementById("file").value) {
+            event.preventDefault();
+            alert("Please choose an image file.");
+        }
+    }
+</script>
 
 <#include "footer.ftl">
