@@ -1,7 +1,7 @@
 package org.iclub.controller;
 
 import java.util.Optional;
-
+import javax.servlet.http.HttpServletRequest;
 import org.iclub.model.BinaryFile;
 import org.iclub.service.BinaryFileService;
 import org.iclub.service.FreemarkerConfigService;
@@ -31,10 +31,20 @@ public class ImageController {
     }
 
     @RequestMapping(value = "/admin/images", method = RequestMethod.GET)
-    public ModelAndView getAdminImagesPage() {
+    public ModelAndView getAdminImagesPage(HttpServletRequest request) {
         final ModelAndView mv = new ModelAndView("admin_images");
         mv.addObject("logo", binaryFileService.findBinaryFileByLogo(Boolean.TRUE).get());
         mv.addObject("scrollers", binaryFileService.findByScroller(Boolean.TRUE));
+
+        if("true".equals(request.getParameter("added"))) {
+            mv.addObject("message", "Image Added");
+        }
+        if("true".equals(request.getParameter("deleted"))) {
+            mv.addObject("message", "Image Deleted");
+        }
+        if("true".equals(request.getParameter("updated"))) {
+            mv.addObject("message", "Image Updated");
+        }
 
         return mv;
     }
@@ -45,7 +55,7 @@ public class ImageController {
 
         freemarkerConfigService.refresh();
 
-        return "redirect:/admin/images";
+        return "redirect:/admin/images?deleted=true";
     }
 
     @RequestMapping(value = "/admin/images/logo", method = RequestMethod.POST)
@@ -73,7 +83,7 @@ public class ImageController {
             redirectAttributes.addFlashAttribute("error", "Unable to save logo image.");
         }
 
-        return "redirect:/admin/images";
+        return "redirect:/admin/images?updated=true";
     }
 
     @RequestMapping(value = "/admin/images/scroller", method = RequestMethod.POST)
@@ -95,6 +105,6 @@ public class ImageController {
             redirectAttributes.addFlashAttribute("error", "Unable to save image.");
         }
 
-        return "redirect:/admin/images";
+        return "redirect:/admin/images?added=true";
     }
 }

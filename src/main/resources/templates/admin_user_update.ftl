@@ -3,8 +3,13 @@
 <#import "/spring.ftl" as spring>
 <@spring.bind "form" />
 
-<form role="form" name="form" action="/admin/update_user" method="post">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<#if message??>
+<div class="container" style="margin-bottom:5px">
+  <div class="alert alert-success">
+    ${message}
+  </div>
+</div>
+</#if>
 
 <#if (spring.status.errors.allErrors?size > 0) >
 <div class="container" style="margin-top:10px">
@@ -15,6 +20,9 @@
     </div>
 </div>
 </#if>
+
+<form role="form" name="form" action="/admin/update_user" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 <div class="container" style="margin-top:10px">
 <div class="form-horizontal" style="margin-bottom:10px">

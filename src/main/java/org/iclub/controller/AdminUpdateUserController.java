@@ -1,6 +1,8 @@
 package org.iclub.controller;
 
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iclub.model.AdminUpdateUserForm;
@@ -47,7 +49,7 @@ public class AdminUpdateUserController {
     }
 
     @RequestMapping(value = "/admin/update_user", method = RequestMethod.GET)
-    public ModelAndView getUserCreatePage(@RequestParam("id") String id) {
+    public ModelAndView getUserCreatePage(@RequestParam("id") String id, HttpServletRequest request) {
         final Optional<User> option = userService.getUserById(Long.parseLong(id));
         UpdateUserForm form = null;
 
@@ -57,7 +59,13 @@ public class AdminUpdateUserController {
             LOGGER.warn(id + " not found");
         }
 
-        return new ModelAndView("admin_user_update", "form", form);
+        final ModelAndView mv = new ModelAndView("admin_user_update", "form", form);
+
+        if("true".equals(request.getParameter("updated"))) {
+            mv.addObject("message", "User Updated");
+        }
+
+        return mv;
     }
 
     @RequestMapping(value = "/admin/update_user", method = RequestMethod.POST)
@@ -66,17 +74,20 @@ public class AdminUpdateUserController {
             return "admin_user_update";
         }
 
+        Long id = null;
+
         try {
             final Optional<User> option = userService.getUserByEmail( form.getEmail() );
 
             if (option.isPresent()) {
                 userService.save(form, option.get().getId(), option.get().getRole());
+                id = option.get().getId();
             }
         } catch (DataIntegrityViolationException e) {
             LOGGER.error("Admin Update User", e);
             return "admin_user_update";
         }
 
-        return "redirect:/admin/users";
+        return "redirect:/admin/update_user?updated=true&id=" + id;
     }
 }

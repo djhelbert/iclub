@@ -1,5 +1,13 @@
 <#include "header.ftl">
 
+<#if message??>
+<div class="container" style="margin-bottom:10px">
+  <div class="alert alert-success">
+    ${message}
+  </div>
+</div>
+</#if>
+
 <div class="container" style="margin-bottom:10px">
   <ul class="breadcrumb">
     <li class="active">Logo</li>

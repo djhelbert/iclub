@@ -28,6 +28,10 @@ public class UsersController {
     @RequestMapping(value ="/admin/users/delete", method = RequestMethod.GET)
     public ModelAndView deleteSponsor(@RequestParam("id") String id) {
         userService.delete(new Long(id));
-        return new ModelAndView("admin_users", "users", userService.getAllUsers());
+
+        ModelAndView mv = new ModelAndView("admin_users", "users", userService.getAllUsers());
+        mv.addObject("message", "User Deleted");
+
+        return mv;
     }
 }
