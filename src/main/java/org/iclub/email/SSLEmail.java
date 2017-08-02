@@ -7,21 +7,21 @@ import javax.mail.Session;
 
 public class SSLEmail {
 
-    /**
-     * Outgoing Mail (SMTP) Server requires TLS or SSL: smtp.gmail.com (use
-     * authentication) Use Authentication: Yes Port for SSL: 465
-     */
-    public static void main(String[] args) {
-        final String fromEmail = "myemailid@gmail.com"; // requires valid gmail
-        final String password = "mypassword"; // correct password for gmail id
-        final String toEmail = "myemail@yahoo.com"; // can be any email id
+    final static String host = "smtp.gmail.com";
+    final static String socketFactoryPort = "465";
+    final static String socketFactoryClass = "javax.net.ssl.SSLSocketFactory";
+    final static String auth = "true";
+    final static String port = "465";
 
-        Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port", "465");
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", "465");
+    public static Session getSession(String fromEmail, String password) {
+
+        final Properties props = new Properties();
+        props.put("mail.smtp.host", host);
+        props.put("mail.smtp.socketFactory.port", socketFactoryPort);
+        props.put("mail.smtp.socketFactory.class", socketFactoryClass);
+        props.put("mail.smtp.auth", auth);
+        props.put("mail.smtp.port", port);
+        props.put("mail.smtp.starttls.enable", "true");
 
         Authenticator auth = new Authenticator() {
             // override the getPasswordAuthentication method
@@ -30,8 +30,9 @@ public class SSLEmail {
             }
         };
 
-        Session session = Session.getDefaultInstance(props, auth);
-        EmailUtil.sendEmail(session, toEmail, "SSLEmail Testing Subject", "SSLEmail Testing Body");
+        final Session session = Session.getDefaultInstance(props, auth);
+
+        return session;
     }
 
 }
