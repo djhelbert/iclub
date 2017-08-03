@@ -28,7 +28,7 @@ public class EmailController {
     private final EmailValidator emailFormValidator;
     private final UserService userService;
 
-    private final static String EMAIL_HEAD = "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /></head>";
+    private final static String EMAIL_HEAD = "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/></head>";
 
     @Autowired
     public EmailController(SettingService settingService, UserService userService, EmailValidator emailFormValidator) {
@@ -63,7 +63,7 @@ public class EmailController {
         }
 
         final String name = settingService.findSettingByName(SettingService.TITLE).get().getValue();
-        final String body = "<html xmlns=\"http://www.w3.org/1999/xhtml\">" + EMAIL_HEAD + "<body>" + form.getBody() + "</body></html>";
+        final String body = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\">" + EMAIL_HEAD + "<body style=\"width:100%; margin:0; padding:0;\">" + form.getBody() + "</body></html>";
 
         for (User user : userService.getAllUsers()) {
             if (!user.isAdmin()) {
