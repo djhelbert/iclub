@@ -15,6 +15,9 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.HtmlEmail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,20 +27,40 @@ public class EmailUtil {
     private static final String UTF8 = "UTF-8";
 
     /**
-     * Utility method to send simple HTML email
-     *
+     * Send HTML Email
+     * 
      * @param fromEmail
      * @param password
+     * @param name
      * @param toEmail
      * @param subject
      * @param body
+     * @param toName
      */
+    public static void sendHtmlEmail(String fromEmail, String password, String name, String toEmail, String subject, String body, String toName) {
+        try {
+            HtmlEmail email = new HtmlEmail();
+            email.setSSLOnConnect(true);
+            email.setHostName(SSLEmail.host);
+            email.setSmtpPort(Integer.parseInt(SSLEmail.port));
+            email.setAuthenticator(new DefaultAuthenticator(fromEmail, password));
+            email.addTo(toEmail, toName);
+            email.setFrom(fromEmail, name);
+            email.setSubject(subject);
+            email.setHtmlMsg(body);
+            email.setTextMsg("Your email client does not support HTML messages.");
+            email.send();
+        } catch (Exception e) {
+            LOGGER.error("Send Email", e);
+        }
+    }
+
     public static void sendEmail(String fromEmail, String password, String name, String toEmail, String subject, String body) {
         try {
             final MimeMessage msg = new MimeMessage(SSLEmail.getSession(fromEmail, password));
 
             msg.addHeader("Content-Type", "text/html; charset=UTF-8");
-            //msg.addHeader("format", "flowed");
+            // msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "quoted-printable");
             msg.setFrom(new InternetAddress(fromEmail, name));
             msg.setReplyTo(InternetAddress.parse(fromEmail, false));
@@ -52,14 +75,6 @@ public class EmailUtil {
         }
     }
 
-    /**
-     * Utility method to send email with attachment
-     * 
-     * @param session
-     * @param toEmail
-     * @param subject
-     * @param body
-     */
     public static void sendAttachmentEmail(Session session, String toEmail, String subject, String body) {
         try {
             final MimeMessage msg = new MimeMessage(session);

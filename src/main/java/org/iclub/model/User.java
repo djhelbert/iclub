@@ -80,6 +80,10 @@ public class User {
         this.role = role;
     }
 
+    public boolean isDisabled() {
+        return role != null && "DISABLED".equals(role.name()) ? true : false;
+    }
+
     public boolean isAdmin() {
         return role != null && "ADMIN".equals(role.name()) ? true : false;
     }
