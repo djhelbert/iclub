@@ -3,8 +3,13 @@
 <#import "/spring.ftl" as spring>
 <@spring.bind "form" />
 
-<form role="form" name="form" action="" method="post">
-<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+<#if message??>
+<div class="container" style="margin-bottom:5px">
+  <div class="alert alert-success">
+    ${message}
+  </div>
+</div>
+</#if>
 
 <#if (spring.status.errors.allErrors?size > 0) >
 <div class="container" style="margin-top:10px">
@@ -16,6 +21,8 @@
 </div>
 </#if>
 
+<form role="form" name="form" action="" method="post">
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <div class="container">
   <div class="form-horizontal" style="margin-bottom:10px">
     <ul class="breadcrumb">
@@ -25,11 +32,11 @@
     <form role="form" name="form" action="" method="POST">
     <div class="form-group">
       <label class="control-label col-sm-2" for="title">Title *</label>
-      <div class="col-sm-10"><@spring.formInput "form.title" "class='form-control'  maxlength='50'" "text"/></div>
+      <div class="col-sm-10"><@spring.formInput "form.title" "class='form-control'  maxlength='50' required" "text"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="description">Description *</label>
-      <div class="col-sm-10"><@spring.formInput "form.description" "class='form-control' maxlength='250'" "text"/></div>
+      <div class="col-sm-10"><@spring.formInput "form.description" "class='form-control' maxlength='250' required" "text"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="facebook">Facebook Group</label>

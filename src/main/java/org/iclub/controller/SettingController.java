@@ -2,6 +2,7 @@ package org.iclub.controller;
 
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iclub.model.Setting;
@@ -45,8 +46,14 @@ public class SettingController {
     }
 
     @RequestMapping(value = "/admin/settings", method = RequestMethod.GET)
-    public ModelAndView getUserCreatePage() {
-        return new ModelAndView("admin_settings", "form", settingService.getSettingForm());
+    public ModelAndView getUserCreatePage(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView("admin_settings", "form", settingService.getSettingForm());
+
+        if("true".equals(request.getParameter("updated"))) {
+            mv.addObject("message", "Settings Updated");
+        }
+
+        return mv;
     }
 
     @RequestMapping(value = "/admin/settings", method = RequestMethod.POST)
@@ -75,7 +82,7 @@ public class SettingController {
 
         freemarkerConfigService.refresh();
 
-        return "redirect:/";
+        return "redirect:/admin/settings?updated=true";
     }
 
     private void createSetting(String name, String value) {
