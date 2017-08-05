@@ -18,15 +18,15 @@ public class ContentServiceTest {
 
     @Test
     public void testService() {
-    	contentService.save(getContent());
-    	Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
-    	assert optional.isPresent();
+        contentService.save(getContent());
+        Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
+        assert optional.isPresent();
     }
 
     private Content getContent() {
-    	final Content content = new Content();
-    	content.setName(ContentService.ABOUT);
-    	content.setContentText("Text.....");
-    	return content;
+        final Content content = new Content();
+        content.setName(ContentService.ABOUT);
+        content.setContentText("Text.....");
+        return content;
     }
 }

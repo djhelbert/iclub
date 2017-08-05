@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BinaryFileRepository extends JpaRepository<BinaryFile, Long> {
 
-	Optional<BinaryFile> findBinaryFileByLogo(Boolean logo);
-	List<BinaryFile> findByScroller(Boolean scroller);
-	List<BinaryFile> findByResource(Boolean resource);
+    Optional<BinaryFile> findBinaryFileByLogo(Boolean logo);
+    List<BinaryFile> findByScroller(Boolean scroller);
+    List<BinaryFile> findByResource(Boolean resource);
 
 }

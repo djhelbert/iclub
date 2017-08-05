@@ -6,10 +6,11 @@ import org.iclub.model.Content;
 
 public interface ContentService {
 
-	public String ABOUT = "ABOUT";
-	public String TERMS = "TERMS";
-	public String PRIVACY = "PRIVACY";
+    public String ABOUT = "ABOUT";
+    public String TERMS = "TERMS";
+    public String PRIVACY = "PRIVACY";
 
-	Optional<Content> getContentByName(String name);
-	Content save(Content content);
+    Optional<Content> getContentByName(String name);
+
+    Content save(Content content);
 }

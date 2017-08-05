@@ -15,29 +15,29 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class SponsorServiceImpl implements SponsorService {
 
-	private final SponsorRepository sponsorRepository;
+    private final SponsorRepository sponsorRepository;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SponsorServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SponsorServiceImpl.class);
 
-	@Autowired
-	public SponsorServiceImpl(SponsorRepository sponsorRepository) {
-		this.sponsorRepository = sponsorRepository;
-	}
+    @Autowired
+    public SponsorServiceImpl(SponsorRepository sponsorRepository) {
+        this.sponsorRepository = sponsorRepository;
+    }
 
-	@Override
-	public Sponsor save(Sponsor sponsor) {
-		return sponsorRepository.save(sponsor);
-	}
+    @Override
+    public Sponsor save(Sponsor sponsor) {
+        return sponsorRepository.save(sponsor);
+    }
 
-	@Override
-	public void delete(Long id) {
-		LOGGER.debug("Delete " + id);
-		sponsorRepository.delete(id);
-	}
-	
-	@Override
-	public List<Sponsor> findAll() {
-		LOGGER.debug("Find All");
-		return sponsorRepository.findAll();
-	}
+    @Override
+    public void delete(Long id) {
+        LOGGER.debug("Delete " + id);
+        sponsorRepository.delete(id);
+    }
+
+    @Override
+    public List<Sponsor> findAll() {
+        LOGGER.debug("Find All");
+        return sponsorRepository.findAll();
+    }
 }

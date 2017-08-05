@@ -19,8 +19,7 @@ public class SeedDataServiceTest {
 
     @Test
     public void testService() {
-    	seedDataService.init();
-
-    	assert userService.findByRole(Role.ADMIN).get(0).getFirstName().equals("iClub");
+        seedDataService.init();
+        assert userService.findByRole(Role.ADMIN).get(0).getFirstName().equals("iClub");
     }
 }

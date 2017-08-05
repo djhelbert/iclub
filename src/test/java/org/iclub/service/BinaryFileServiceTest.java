@@ -20,29 +20,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class BinaryFileServiceTest {
 
-	@Autowired
-	private BinaryFileService binaryFileService;
+    @Autowired
+    private BinaryFileService binaryFileService;
 
-	private static final String MIMETYPE = "image/png";
-	
-	@Test
-	public void testRepository() {
-		try {
-			binaryFileService.save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
+    private static final String MIMETYPE = "image/png";
 
-			List<BinaryFile> resources = binaryFileService.findByResource(Boolean.TRUE);
-			assert resources.size() > 0;
+    @Test
+    public void testRepository() {
+        try {
+            binaryFileService.save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
 
-			InputStream in = new ByteArrayInputStream(resources.get(0).getData());
-			BufferedImage image = ImageIO.read(in);
-			assert image.getHeight() == 32;
-			assert image.getWidth() == 32;
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			assert false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			assert false;
-		}
-	}
+            List<BinaryFile> resources = binaryFileService.findByResource(Boolean.TRUE);
+            assert resources.size() > 0;
+
+            InputStream in = new ByteArrayInputStream(resources.get(0).getData());
+            BufferedImage image = ImageIO.read(in);
+            assert image.getHeight() == 32;
+            assert image.getWidth() == 32;
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            assert false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            assert false;
+        }
+    }
 }

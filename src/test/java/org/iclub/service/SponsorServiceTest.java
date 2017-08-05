@@ -16,29 +16,29 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class SponsorServiceTest {
 
-	private static final String MIMETYPE = "image/png";
+    private static final String MIMETYPE = "image/png";
 
-	@Autowired
+    @Autowired
     private SponsorService sponsorService;
 
     @Test
     public void testService() {
-    	sponsorService.save(getSponsor());
+        sponsorService.save(getSponsor());
 
-    	List<Sponsor> sponsors = sponsorService.findAll();
-    	assert sponsors.size() == 1;
+        List<Sponsor> sponsors = sponsorService.findAll();
+        assert sponsors.size() == 1;
     }
 
     private Sponsor getSponsor() {
-    	final Sponsor sponsor = new Sponsor();
-    	sponsor.setDescription("description");
-    	sponsor.setName("name");
-    	try {
-			sponsor.setBinaryFile(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
-		} catch (IOException | URISyntaxException e) {
-			e.printStackTrace();
-			assert false;
-		}
-    	return sponsor;
+        final Sponsor sponsor = new Sponsor();
+        sponsor.setDescription("description");
+        sponsor.setName("name");
+        try {
+            sponsor.setBinaryFile(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+            assert false;
+        }
+        return sponsor;
     }
 }
