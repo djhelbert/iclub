@@ -122,6 +122,10 @@ public class CalendarDay {
         this.day = day;
     }
 
+    public boolean hasEvents() {
+        return events == null ? false : events.size() > 0;
+    }
+
     public int getEventsSize() {
         return events.size();
     }
