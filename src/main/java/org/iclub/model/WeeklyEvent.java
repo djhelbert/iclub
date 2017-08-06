@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.iclub.calendar.CalendarEvent;
+
 @Entity
 @Table(name = "weekly_event")
 public class WeeklyEvent {
@@ -27,8 +29,25 @@ public class WeeklyEvent {
     @Column(name = "address", nullable = true, unique = false, length = 250)
     private String address;
 
-    @Column(name = "day_of_week", nullable = true, updatable = true)
+    @Column(name = "day_of_week", nullable = false, updatable = true)
     private Integer dayOfWeek;
+
+    @Column(name = "time_of_day", nullable = false, updatable = true)
+    private java.sql.Time time;
+
+    public CalendarEvent getCalendarEvent() {
+        CalendarEvent ce = new CalendarEvent();
+        ce.setName(name);
+        ce.setDescription(description);
+        ce.setUrl(url);
+        ce.setAddress(address);
+        ce.setHour(getHours());
+        ce.setMinute(getMinutes());
+        ce.setPm(isPm());
+        ce.setWeekly(true);
+
+        return ce;
+    }
 
     public Long getId() {
         return id;
@@ -80,5 +99,35 @@ public class WeeklyEvent {
 
     public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public java.sql.Time getTime() {
+        return time;
+    }
+
+    public void setTime(java.sql.Time time) {
+        this.time = time;
+    }
+
+    public int getHours() {
+        if (time == null) {
+            return 0;
+        } else {
+            if (time.getHours() == 0) {
+                return 12;
+            } else if(time.getHours() > 12) {
+                return time.getHours() - 12;
+            } else {
+                return time.getHours();
+            }
+        }
+    }
+
+    public int getMinutes() {
+        return time == null ? 0 : time.getMinutes();
+    }
+
+    public boolean isPm() {
+        return time == null ? false : time.getHours() >= 12;
     }
 }

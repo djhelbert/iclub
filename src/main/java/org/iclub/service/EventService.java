@@ -2,6 +2,7 @@ package org.iclub.service;
 
 import java.util.Date;
 import java.util.List;
+import org.iclub.calendar.CalendarDay;
 import org.iclub.model.Event;
 import org.iclub.model.WeeklyEvent;
 
@@ -14,5 +15,6 @@ public interface EventService {
     public Event saveEvent(Event e);
     public List<Event> findEvents(Date start, Date end);
     public List<Event> findAllEvents();
+    public List<CalendarDay> getCalendarDays(int days);
 
 }

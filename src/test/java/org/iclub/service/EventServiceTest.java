@@ -1,7 +1,10 @@
 package org.iclub.service;
 
+import java.sql.Time;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import org.iclub.calendar.CalendarDay;
 import org.iclub.model.Event;
 import org.iclub.model.WeeklyEvent;
 import org.junit.Test;
@@ -21,6 +24,12 @@ public class EventServiceTest {
     public void testWeeklyEvents() {
         eventService.saveWeeklyEvent(getWeeklyEvent());
         assert 1 == eventService.findAllWeeklyEvents().size();
+
+        List<CalendarDay> days = eventService.getCalendarDays(7);
+        assert days.size() == 7;
+        assert days.get(0).getEvents().size() == 1;
+        assert days.get(0).getEvents().get(0).isWeekly();
+        assert days.get(0).getEvents().get(0).isPm();
     }
 
     @Test
@@ -55,6 +64,11 @@ public class EventServiceTest {
         we.setDescription("No work today let's play.");
         we.setAddress("Beverly Hills, CA 90210");
         we.setUrl("http://www.yahoo.com");
+        we.setTime(Time.valueOf("13:00:00"));
+
+        assert we.isPm() == true;
+        assert we.getMinutes() == 0;
+        assert we.getHours() == 1;
 
         return we;
     }

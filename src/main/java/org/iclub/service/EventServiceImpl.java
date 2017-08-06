@@ -3,6 +3,8 @@ package org.iclub.service;
 import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
+import org.iclub.calendar.CalendarDay;
+import org.iclub.calendar.CalendarUtil;
 import org.iclub.model.Event;
 import org.iclub.model.WeeklyEvent;
 import org.iclub.repository.EventRepository;
@@ -49,5 +51,19 @@ public class EventServiceImpl implements EventService {
 
     public List<Event> findAllEvents() {
         return eventRepository.findAll();
+    }
+
+    public List<CalendarDay> getCalendarDays(int days) {
+        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+
+        for (WeeklyEvent we : findAllWeeklyEvents()) {
+            for (CalendarDay day : calendarDays) {
+                if (day.getDayOfWeek() == we.getDayOfWeek()) {
+                    day.getEvents().add(we.getCalendarEvent());
+                }
+            }
+        }
+
+        return calendarDays;
     }
 }
