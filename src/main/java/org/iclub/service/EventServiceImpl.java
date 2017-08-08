@@ -49,6 +49,10 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findByTimestamp(start, end);
     }
 
+    public List<Event> findEvents(Date start) {
+        return eventRepository.findByTimestamp(start);
+    }
+
     public List<Event> findAllEvents() {
         return eventRepository.findAll();
     }

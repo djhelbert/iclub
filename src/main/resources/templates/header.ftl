@@ -7,7 +7,7 @@
   <title>${TITLE}</title>
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.2/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.2.0/css/font-awesome.css" />
-  
+
   <style>
 .navbar-nav>li>.dropdown-menu {
     margin-top: 6px;
@@ -228,6 +228,7 @@
                 <ul class="dropdown-menu">
                   <li><a href="/admin/users">Users</a></li>
                   <li><a href="/admin/email">Send Email</a></li>
+                  <li><a href="/admin/events">Events</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="/admin/about">About</a></li>
                   <li><a href="/admin/images">Images</a></li>

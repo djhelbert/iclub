@@ -1,5 +1,6 @@
 package org.iclub.model;
 
+import java.net.URLEncoder;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -54,6 +55,10 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEncodedUrl() {
+        return URLEncoder.encode(url);
     }
 
     public String getUrl() {

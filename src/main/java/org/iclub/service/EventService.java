@@ -15,6 +15,7 @@ public interface EventService {
     public Event saveEvent(Event e);
     public List<Event> findEvents(Date start, Date end);
     public List<Event> findAllEvents();
+    public List<Event> findEvents(Date start);
     public List<CalendarDay> getCalendarDays(int days);
 
 }

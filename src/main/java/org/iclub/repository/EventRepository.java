@@ -12,4 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("select e from Event e where e.timestamp >= :start and e.timestamp <= :end")
     List<Event> findByTimestamp(@Param("start") Date start, @Param("end") Date end);
+
+    @Query("select e from Event e where e.timestamp >= :start")
+    List<Event> findByTimestamp(@Param("start") Date start);
 }

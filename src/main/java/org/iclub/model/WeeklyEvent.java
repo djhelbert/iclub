@@ -1,5 +1,7 @@
 package org.iclub.model;
 
+import java.net.URLEncoder;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -71,6 +73,10 @@ public class WeeklyEvent {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getEncodedUrl() {
+        return URLEncoder.encode(url);
     }
 
     public String getUrl() {
