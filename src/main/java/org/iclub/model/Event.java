@@ -24,7 +24,7 @@ public class Event {
     @Column(name = "description", nullable = true, unique = false, length = 250)
     private String description;
 
-    @Column(name = "url", nullable = true, unique = false, length = 50)
+    @Column(name = "url", nullable = true, unique = false, length = 250)
     private String url;
 
     @Column(name = "address", nullable = true, unique = false, length = 250)

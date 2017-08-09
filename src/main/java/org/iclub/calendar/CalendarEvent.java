@@ -1,5 +1,7 @@
 package org.iclub.calendar;
 
+import java.net.URLEncoder;
+
 public class CalendarEvent {
 
     private boolean weekly = false;
@@ -7,8 +9,8 @@ public class CalendarEvent {
     private String description;
     private String url;
     private String address;
-    private Integer hour;
-    private Integer minute;
+    private Integer hour = 0;
+    private Integer minute = 0;
     private boolean pm = false;
 
     public boolean isWeekly() {
@@ -43,6 +45,10 @@ public class CalendarEvent {
         this.url = url;
     }
 
+    public String getEncodedAddress() {
+        return URLEncoder.encode(address);
+    }
+
     public String getAddress() {
         return address;
     }
@@ -57,6 +63,10 @@ public class CalendarEvent {
 
     public void setHour(Integer hour) {
         this.hour = hour;
+    }
+
+    public String getPaddedMinute() {
+        return minute < 10 ? "0" + minute : "" + minute;
     }
 
     public Integer getMinute() {

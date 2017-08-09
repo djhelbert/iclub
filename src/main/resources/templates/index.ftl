@@ -90,20 +90,20 @@
                       <#else>
                         <#assign y = 0>
                         <#list day.events as event>
-                          <#if y > 0>
+                          <#if y gt 0>
                           <tr>
-                            <td class="agenda-time">${event.hour}:${event.minute}</td>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.url??><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
-                              <div class="agenda-event">
-                                ${event.name}
+                              <div class="agenda-event" title="${event.description}">
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
                               </div>
                             </td>
                           </tr>
                           <#else>
-                            <td class="agenda-time">${event.hour}:${event.minute}</td>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.url??><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
-                              <div class="agenda-event">
-                                ${event.name}
+                              <div class="agenda-event" title="${event.description}">
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
                               </div>
                             </td>
                           </tr>
