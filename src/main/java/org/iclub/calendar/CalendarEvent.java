@@ -4,6 +4,7 @@ import java.net.URLEncoder;
 
 public class CalendarEvent {
 
+    private Long id;
     private boolean weekly = false;
     private String name;
     private String description;
@@ -12,6 +13,14 @@ public class CalendarEvent {
     private Integer hour = 0;
     private Integer minute = 0;
     private boolean pm = false;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public boolean isWeekly() {
         return weekly;

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,6 +30,20 @@ public class AdminEventController {
     public AdminEventController(EventService eventService, EventValidator eventValidator) {
         this.eventService = eventService;
         this.eventValidator = eventValidator;
+    }
+
+    @RequestMapping(value ="/admin/events/delete", method = RequestMethod.GET)
+    public String deleteEvent(@RequestParam("id") String id) {
+        eventService.deleteWeeklyEvent(new Long(id));
+
+        return "redirect:/admin/events?deleted=true";
+    }
+
+    @RequestMapping(value ="/admin/events/weekly/delete", method = RequestMethod.GET)
+    public String deleteWeeklyEvent(@RequestParam("id") String id) {
+        eventService.deleteWeeklyEvent(new Long(id));
+
+        return "redirect:/admin/events?deleted=true";
     }
 
     @RequestMapping(value = "/admin/events", method = RequestMethod.GET)

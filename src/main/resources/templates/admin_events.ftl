@@ -47,7 +47,7 @@
                             <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
-                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name} <a href="/admin/events/weekly/delete?id=${event.id}"><i class="glyphicon glyphicon-remove text-muted"></i></a>
                               </div>
                             </td>
                           </tr>
@@ -55,7 +55,7 @@
                             <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
-                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name} <a href="/admin/events/weekly/delete?id=${event.id}"><i class="glyphicon glyphicon-remove text-muted"></i></a>
                               </div>
                             </td>
                           </tr>

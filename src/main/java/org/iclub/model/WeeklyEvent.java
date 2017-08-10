@@ -39,6 +39,7 @@ public class WeeklyEvent {
 
     public CalendarEvent getCalendarEvent() {
         CalendarEvent ce = new CalendarEvent();
+        ce.setId(id);
         ce.setName(name);
         ce.setDescription(description);
         ce.setUrl(url);
