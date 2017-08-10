@@ -8,7 +8,6 @@ import org.iclub.service.EventService;
 import org.iclub.validator.EventValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -49,7 +48,7 @@ public class AdminEventController {
     @RequestMapping(value = "/admin/events", method = RequestMethod.GET)
     public ModelAndView getAdminImagesPage(HttpServletRequest request) {
         final ModelAndView mv = new ModelAndView("admin_events");
-        mv.addObject("days", eventService.getCalendarDays(7));
+        mv.addObject("days", eventService.getWeeklyDays(7));
 
         if("true".equals(request.getParameter("added"))) {
             mv.addObject("message", "Event Added");
@@ -73,8 +72,12 @@ public class AdminEventController {
         }
 
         try {
-            eventService.saveWeeklyEvent(form.toWeeklyEvent());
-        } catch (DataIntegrityViolationException e) {
+            if (form.isWeekly()) {
+                eventService.saveWeeklyEvent(form.toWeeklyEvent());
+            } else {
+                eventService.saveEvent(form.toEvent());
+            }
+        } catch (Exception e) {
             return "admin_events";
         }
 

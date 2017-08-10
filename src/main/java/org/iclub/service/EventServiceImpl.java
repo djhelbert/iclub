@@ -26,7 +26,7 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<WeeklyEvent> findAllWeeklyEvents() {
-        return weeklyEventRepository.findAll();
+        return weeklyEventRepository.findAllOrderByDayTime();
     }
 
     public void deleteWeeklyEvent(Long id) {
@@ -57,12 +57,48 @@ public class EventServiceImpl implements EventService {
         return eventRepository.findAll();
     }
 
+    public List<CalendarDay> getWeeklyDays(int days) {
+        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+
+        for (WeeklyEvent we : findAllWeeklyEvents()) {
+            for (CalendarDay day : calendarDays) {
+                if (day.getDayOfWeek() == we.getDayOfWeek()) {
+                    day.getEvents().add(we.getCalendarEvent());
+                }
+            }
+        }
+
+        return calendarDays;
+    }
+
+    public List<CalendarDay> getEventDays(int days) {
+        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+
+        for (Event we : findEvents(new Date())) {
+            for (CalendarDay day : calendarDays) {
+                if (day.getDay() == we.getDay() && day.getMonth() == we.getMonth() && day.getYear() == we.getYear()) {
+                    day.getEvents().add(we.getCalendarEvent());
+                }
+            }
+        }
+
+        return calendarDays;
+    }
+
     public List<CalendarDay> getCalendarDays(int days) {
         List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
 
         for (WeeklyEvent we : findAllWeeklyEvents()) {
             for (CalendarDay day : calendarDays) {
                 if (day.getDayOfWeek() == we.getDayOfWeek()) {
+                    day.getEvents().add(we.getCalendarEvent());
+                }
+            }
+        }
+
+        for (Event we : findEvents(new Date())) {
+            for (CalendarDay day : calendarDays) {
+                if (day.getDay() == we.getDay() && day.getMonth() == we.getMonth() && day.getYear() == we.getYear()) {
                     day.getEvents().add(we.getCalendarEvent());
                 }
             }

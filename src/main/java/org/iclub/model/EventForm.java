@@ -95,4 +95,7 @@ public class EventForm {
         this.dayOfWeek = dayOfWeek;
     }
 
+    public boolean isWeekly() {
+        return dayOfWeek == null ? false : dayOfWeek.toString().length() > 0;
+    }
 }

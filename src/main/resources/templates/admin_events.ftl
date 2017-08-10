@@ -11,10 +11,9 @@
 <div class="container" style="margin-bottom:10px">
   <ul class="breadcrumb">
     <li>Admin</li>
-    <li class="active">Weekly Events</li>
+    <li class="active">Events</li>
   </ul>
   <div>
-        <h3>This Week</h3>
         <div class="agenda">
           <div class="table-responsive">
             <table class="table table-condensed table-bordered">
@@ -112,6 +111,56 @@
         <option value="6">Friday</option>
         <option value="7">Saturday</option>
       </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="time">Time</label>
+    <div class="col-sm-10">
+      <input type="time" class="form-control" name="time" id="time" placeholder="" required>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<form class="form-horizontal" action="/admin/events" method="POST">
+
+<div class="container" style="margin-bottom:10px">
+<h3>Add Event</h3>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="name">Name *</label>
+    <div class="col-sm-10">
+      <input type="input" class="form-control" maxlength="50" name="name" id="name" placeholder="" required>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description</label>
+    <div class="col-sm-10"> 
+      <input type="input" class="form-control" maxlength="250" name="description" id="description" placeholder="">
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="url">URL</label>
+    <div class="col-sm-10">
+      <input type="url" class="form-control" maxlength="250" name="url" id="url" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="address">Address</label>
+    <div class="col-sm-10">
+      <input type="input" class="form-control" maxlength="250" name="address" id="address" placeholder="">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="date">Date</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" name="date" id="date" placeholder="" required>
     </div>
   </div>
   <div class="form-group">
