@@ -1,6 +1,6 @@
 <#include "header.ftl">
 
-<div class="container" style="margin-bottom:10px">
+<div class="container" style="margin-bottom:5px">
   <ul class="breadcrumb">
     <li class="active">Our Sponsors</li>
   </ul>
@@ -23,5 +23,7 @@
     </div>
   </div>
 </div>
+
+<div>&nbsp;</div>
 
 <#include "footer.ftl">
