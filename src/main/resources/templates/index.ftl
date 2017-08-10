@@ -92,7 +92,7 @@
                         <#list day.events as event>
                           <#if y gt 0>
                           <tr>
-                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.url??><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
                                 <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
@@ -100,7 +100,7 @@
                             </td>
                           </tr>
                           <#else>
-                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.url??><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
                                 <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}

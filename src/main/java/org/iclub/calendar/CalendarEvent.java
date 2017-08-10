@@ -45,6 +45,10 @@ public class CalendarEvent {
         this.url = url;
     }
 
+    public String getMapUrl() {
+        return "http://maps.google.com/?q=" + getEncodedAddress();
+    }
+
     public String getEncodedAddress() {
         return URLEncoder.encode(address);
     }
