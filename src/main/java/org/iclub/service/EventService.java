@@ -18,5 +18,6 @@ public interface EventService {
     public List<Event> findEvents(Date start);
     public List<CalendarDay> getCalendarDays(int days);
     public List<CalendarDay> getWeeklyDays(int days);
+    public List<CalendarDay> getEventDays();
 
 }

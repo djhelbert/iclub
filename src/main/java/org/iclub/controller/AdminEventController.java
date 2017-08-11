@@ -1,5 +1,7 @@
 package org.iclub.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -33,15 +35,13 @@ public class AdminEventController {
 
     @RequestMapping(value ="/admin/events/delete", method = RequestMethod.GET)
     public String deleteEvent(@RequestParam("id") String id) {
-        eventService.deleteWeeklyEvent(new Long(id));
-
+        eventService.deleteEvent(new Long(id));
         return "redirect:/admin/events?deleted=true";
     }
 
     @RequestMapping(value ="/admin/events/weekly/delete", method = RequestMethod.GET)
     public String deleteWeeklyEvent(@RequestParam("id") String id) {
         eventService.deleteWeeklyEvent(new Long(id));
-
         return "redirect:/admin/events?deleted=true";
     }
 
@@ -49,6 +49,7 @@ public class AdminEventController {
     public ModelAndView getAdminImagesPage(HttpServletRequest request) {
         final ModelAndView mv = new ModelAndView("admin_events");
         mv.addObject("days", eventService.getWeeklyDays(7));
+        mv.addObject("events", eventService.getEventDays());
 
         if("true".equals(request.getParameter("added"))) {
             mv.addObject("message", "Event Added");

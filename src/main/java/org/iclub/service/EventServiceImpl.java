@@ -1,5 +1,6 @@
 package org.iclub.service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -71,15 +72,17 @@ public class EventServiceImpl implements EventService {
         return calendarDays;
     }
 
-    public List<CalendarDay> getEventDays(int days) {
-        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+    public List<CalendarDay> getEventDays() {
+        List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
 
-        for (Event we : findEvents(new Date())) {
-            for (CalendarDay day : calendarDays) {
-                if (day.getDay() == we.getDay() && day.getMonth() == we.getMonth() && day.getYear() == we.getYear()) {
-                    day.getEvents().add(we.getCalendarEvent());
-                }
-            }
+        for (Event e : findEvents(new Date())) {
+            CalendarDay day = new CalendarDay();
+            day.setDayOfWeek(e.getDayOfWeek());
+            day.setDay(e.getDay());
+            day.setMonth(e.getMonth());
+            day.setYear(e.getYear());
+            day.getEvents().add(e.getCalendarEvent());
+            calendarDays.add(day);
         }
 
         return calendarDays;

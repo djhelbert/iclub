@@ -11,7 +11,7 @@
 <div class="container" style="margin-bottom:10px">
   <ul class="breadcrumb">
     <li>Admin</li>
-    <li class="active">Events</li>
+    <li class="active">Weekly Events</li>
   </ul>
   <div>
         <div class="agenda">
@@ -127,6 +127,68 @@
 </div>
 
 </form>
+
+<div class="container" style="margin-bottom:10px">
+  <ul class="breadcrumb">
+    <li>Admin</li>
+    <li class="active">Events</li>
+  </ul>
+  <div>
+        <div class="agenda">
+          <div class="table-responsive">
+            <table class="table table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <#list events as day>
+                      <tr>
+                        <td class="agenda-date" class="active" <#if day.hasEvents()>rowspan="${day.eventsSize}"</#if>>
+                            <div class="dayofmonth">${day.day}</div>
+                            <div class="dayofweek">${day.dayLabel}</div>
+                            <div class="shortdate text-muted">${day.monthLabel}, ${day.year}</div>
+                        </td>
+                      <#if !day.hasEvents()>
+                        <td class="agenda-time">&nbsp;</td>
+                        <td class="agenda-events">
+                            <div class="agenda-event">&nbsp;</div>
+                        </td>
+                      </tr>
+                      <#else>
+                        <#assign y = 0>
+                        <#list day.events as event>
+                          <#if y gt 0>
+                          <tr>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
+                            <td class="agenda-events">
+                              <div class="agenda-event" title="${event.description}">
+                                ${event.name} <a href="/admin/events/delete?id=${event.id}"><i class="glyphicon glyphicon-remove text-muted"></i></a>
+                              </div>
+                            </td>
+                          </tr>
+                          <#else>
+                            <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
+                            <td class="agenda-events">
+                              <div class="agenda-event" title="${event.description}">
+                                ${event.name} <a href="/admin/events/delete?id=${event.id}"><i class="glyphicon glyphicon-remove text-muted"></i></a>
+                              </div>
+                            </td>
+                          </tr>
+                          </#if>
+                          <#assign y++>
+                        </#list>
+                      </#if>
+                    </#list>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 <form class="form-horizontal" action="/admin/events" method="POST">
 

@@ -109,6 +109,10 @@ public class Event {
         return c;
     }
 
+    public int getDayOfWeek() {
+        return getCalendar().get(Calendar.DAY_OF_WEEK);
+    }
+
     public int getDay() {
         return getCalendar().get(Calendar.DAY_OF_MONTH);
     }
