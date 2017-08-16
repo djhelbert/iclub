@@ -43,6 +43,14 @@
       <div class="col-sm-10"><@spring.formInput "form.facebook" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
+      <label class="control-label col-sm-2" for="facebookAppId">Facebook App ID</label>
+      <div class="col-sm-10"><@spring.formInput "form.facebookAppId" "class='form-control' maxlength='50'" "text"/></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="facebookAppSecret">Facebook App Secret</label>
+      <div class="col-sm-10"><@spring.formInput "form.facebookAppSecret" "class='form-control' maxlength='100'" "text"/></div>
+    </div>
+    <div class="form-group">
       <label class="control-label col-sm-2" for="twitter">Twitter Handle</label>
       <div class="col-sm-10"><@spring.formInput "form.twitter" "class='form-control' maxlength='50'" "text"/></div>
     </div>
@@ -61,6 +69,14 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="contactEmail">Contact Email</label>
       <div class="col-sm-10"><@spring.formInput "form.contactEmail" "class='form-control' maxlength='50'" "text"/></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="smtpEmail">SMTP Email</label>
+      <div class="col-sm-10"><@spring.formInput "form.smtpEmail" "class='form-control' maxlength='50'" "text"/></div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="smtpPassword">SMTP Password</label>
+      <div class="col-sm-10"><@spring.formInput "form.smtpPassword" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="contactPhone">Contact Phone</label>

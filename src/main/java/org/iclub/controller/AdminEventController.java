@@ -1,13 +1,13 @@
 package org.iclub.controller;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.iclub.model.EventForm;
 import org.iclub.service.EventService;
 import org.iclub.validator.EventValidator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.stereotype.Controller;
@@ -26,6 +26,8 @@ public class AdminEventController {
 
     private EventService eventService;
     private EventValidator eventValidator;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AdminEventController.class);
 
     @Autowired
     public AdminEventController(EventService eventService, EventValidator eventValidator) {
@@ -69,7 +71,7 @@ public class AdminEventController {
     @RequestMapping(value = "/admin/events", method = RequestMethod.POST)
     public String handleUserCreateForm(@Valid @ModelAttribute("form") EventForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "admin_events";
+            return "redirect:/admin/events";
         }
 
         try {
@@ -79,7 +81,8 @@ public class AdminEventController {
                 eventService.saveEvent(form.toEvent());
             }
         } catch (Exception e) {
-            return "admin_events";
+            LOGGER.error("Handle User Create Form", e);
+            return "redirect:/admin/events";
         }
 
         return "redirect:/admin/events?added=true";

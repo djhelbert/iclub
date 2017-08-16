@@ -79,7 +79,7 @@
                         <td class="agenda-date" class="active" <#if day.hasEvents()>rowspan="${day.eventsSize}"</#if>>
                             <div class="dayofmonth">${day.day}</div>
                             <div class="dayofweek">${day.dayLabel}</div>
-                            <div class="shortdate text-muted">${day.monthLabel}, ${day.year}</div>
+                            <div class="shortdate text-muted">${day.monthLabel}, ${day.yearLabel}</div>
                         </td>
                       <#if !day.hasEvents()>
                         <td class="agenda-time">&nbsp;</td>

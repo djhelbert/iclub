@@ -15,58 +15,60 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class SettingServiceImpl implements SettingService {
 
-	private final SettingRepository settingRepository;
+    private final SettingRepository settingRepository;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(SettingServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SettingServiceImpl.class);
 
-	@Autowired
-	public SettingServiceImpl(SettingRepository settingRepository) {
-		this.settingRepository = settingRepository;
-	}
+    @Autowired
+    public SettingServiceImpl(SettingRepository settingRepository) {
+        this.settingRepository = settingRepository;
+    }
 
-	@Override
-	public Optional<Setting> findSettingByName(String name) {
-		LOGGER.debug("Getting setting by name={}", name);
+    @Override
+    public Optional<Setting> findSettingByName(String name) {
+        LOGGER.debug("Getting setting by name={}", name);
 
-		return settingRepository.findSettingByName(name);
-	}
+        return settingRepository.findSettingByName(name);
+    }
 
-	@Override
-	public Setting save(Setting setting) {
-		LOGGER.debug("Saving:" + setting.toString());
+    @Override
+    public Setting save(Setting setting) {
+        LOGGER.debug("Saving:" + setting.toString());
 
-		return settingRepository.save(setting);
-	}
+        return settingRepository.save(setting);
+    }
 
-	@Override
-	public SettingForm getSettingForm() {
-		final SettingForm form = new SettingForm();
+    @Override
+    public SettingForm getSettingForm() {
+        final SettingForm form = new SettingForm();
 
-		form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));
-		form.setDescription(getValue(settingRepository.findSettingByName(SettingService.DESCRIPTION)));
+        form.setDescription(getValue(settingRepository.findSettingByName(SettingService.DESCRIPTION)));
+        form.setContactAddressLine1(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE1)));
+        form.setContactAddressLine2(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE2)));
+        form.setContactEmail(getValue(settingRepository.findSettingByName(SettingService.CONTACT_EMAIL)));
+        form.setContactCity(getValue(settingRepository.findSettingByName(SettingService.CONTACT_CITY)));
+        form.setContactState(getValue(settingRepository.findSettingByName(SettingService.CONTACT_STATE)));
+        form.setContactZipCode(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
+        form.setContactPhone(getValue(settingRepository.findSettingByName(SettingService.CONTACT_PHONE)));
+        form.setFacebook(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK)));
+        form.setFacebookAppId(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_ID)));
+        form.setFacebookAppSecret(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_SECRET)));
+        form.setPinterest(getValue(settingRepository.findSettingByName(SettingService.PINTEREST)));
+        form.setSmtpEmail(getValue(settingRepository.findSettingByName(SettingService.SMTP_EMAIL)));
+        form.setSmtpPassword(getValue(settingRepository.findSettingByName(SettingService.SMTP_PASSWORD)));
+        form.setStrava(getValue(settingRepository.findSettingByName(SettingService.STRAVA)));
+        form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));
+        form.setTwitter(getValue(settingRepository.findSettingByName(SettingService.TWITTER)));
+        form.setYoutube(getValue(settingRepository.findSettingByName(SettingService.YOUTUBE)));
 
-		form.setStrava(getValue(settingRepository.findSettingByName(SettingService.STRAVA)));
-		form.setFacebook(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK)));
-		form.setYoutube(getValue(settingRepository.findSettingByName(SettingService.YOUTUBE)));
-		form.setPinterest(getValue(settingRepository.findSettingByName(SettingService.PINTEREST)));
-		form.setTwitter(getValue(settingRepository.findSettingByName(SettingService.TWITTER)));
+        return form;
+    }
 
-		form.setContactAddressLine1(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE1)));
-		form.setContactAddressLine2(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ADDRESS_LINE2)));
-		form.setContactEmail(getValue(settingRepository.findSettingByName(SettingService.CONTACT_EMAIL)));
-		form.setContactCity(getValue(settingRepository.findSettingByName(SettingService.CONTACT_CITY)));
-		form.setContactState(getValue(settingRepository.findSettingByName(SettingService.CONTACT_STATE)));
-		form.setContactZipCode(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
-		form.setContactPhone(getValue(settingRepository.findSettingByName(SettingService.CONTACT_PHONE)));
-
-		return form;
-	}
-
-	private String getValue(Optional<Setting> optional) {
-		if (optional != null && optional.isPresent()) {
-			return optional.get().getValue();
-		} else {
-			return "";
-		}
-	}
+    private String getValue(Optional<Setting> optional) {
+        if (optional != null && optional.isPresent()) {
+            return optional.get().getValue();
+        } else {
+            return "";
+        }
+    }
 }

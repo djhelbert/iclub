@@ -33,14 +33,6 @@
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
       <div class="form-horizontal">
         <div class="form-group">
-          <label class="control-label col-sm-2" for="fromEmail">From Email *</label>
-          <div class="col-sm-10"><@spring.formInput "form.fromEmail" "class='form-control' required" "fromEmail"/></div>
-        </div>
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="password">Password *</label>
-          <div class="col-sm-10"><@spring.formInput "form.password" "class='form-control' required" "password"/></div>
-        </div>
-        <div class="form-group">
           <label class="control-label col-sm-2" for="password">Subject *</label>
           <div class="col-sm-10"><@spring.formInput "form.subject" "class='form-control' required" "subject"/></div>
         </div>

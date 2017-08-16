@@ -1,6 +1,7 @@
 package org.iclub.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -10,6 +11,8 @@ import org.iclub.model.Event;
 import org.iclub.model.WeeklyEvent;
 import org.iclub.repository.EventRepository;
 import org.iclub.repository.WeeklyEventRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +23,8 @@ public class EventServiceImpl implements EventService {
     private final EventRepository eventRepository;
     private final WeeklyEventRepository weeklyEventRepository;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventServiceImpl.class);
+
     @Autowired
     public EventServiceImpl(EventRepository eventRepository, WeeklyEventRepository weeklyEventRepository) {
         this.eventRepository = eventRepository;
@@ -27,6 +32,8 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<WeeklyEvent> findAllWeeklyEvents() {
+        LOGGER.debug("Getting All Weekly Events");
+
         return weeklyEventRepository.findAllOrderByDayTime();
     }
 
@@ -51,15 +58,21 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<Event> findEvents(Date start) {
+        LOGGER.debug("Getting Events From : " + start);
+
         return eventRepository.findByTimestamp(start);
     }
 
     public List<Event> findAllEvents() {
+        LOGGER.debug("Find All Events");
+
         return eventRepository.findAll();
     }
 
     public List<CalendarDay> getWeeklyDays(int days) {
-        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+        LOGGER.debug("Getting Weekly Days : " + days);
+
+        final List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
 
         for (WeeklyEvent we : findAllWeeklyEvents()) {
             for (CalendarDay day : calendarDays) {
@@ -73,9 +86,19 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<CalendarDay> getEventDays() {
-        List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
+        LOGGER.debug("Getting Event Days");
 
-        for (Event e : findEvents(new Date())) {
+        final List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
+        final Calendar cal = Calendar.getInstance();
+
+        while (cal.get(Calendar.DAY_OF_WEEK) > Calendar.SUNDAY) {
+            cal.add(Calendar.DATE, -1);
+        }
+
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+
+        for (Event e : findEvents(cal.getTime())) {
             CalendarDay day = new CalendarDay();
             day.setDayOfWeek(e.getDayOfWeek());
             day.setDay(e.getDay());
@@ -89,7 +112,9 @@ public class EventServiceImpl implements EventService {
     }
 
     public List<CalendarDay> getCalendarDays(int days) {
-        List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
+        LOGGER.debug("Getting Calendar Days : " + days);
+
+        final List<CalendarDay> calendarDays = CalendarUtil.getCalendarDays(days);
 
         for (WeeklyEvent we : findAllWeeklyEvents()) {
             for (CalendarDay day : calendarDays) {
@@ -99,7 +124,16 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        for (Event we : findEvents(new Date())) {
+        final Calendar cal = Calendar.getInstance();
+
+        while (cal.get(Calendar.DAY_OF_WEEK) > Calendar.SUNDAY) {
+            cal.add(Calendar.DATE, -1);
+        }
+
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+
+        for (Event we : findEvents(cal.getTime())) {
             for (CalendarDay day : calendarDays) {
                 if (day.getDay() == we.getDay() && day.getMonth() == we.getMonth() && day.getYear() == we.getYear()) {
                     day.getEvents().add(we.getCalendarEvent());

@@ -2,7 +2,6 @@ package org.iclub.email;
 
 public class EmailJob {
 
-    private String password;
     private String toEmail;
     private String subject;
     private String body;
@@ -11,21 +10,20 @@ public class EmailJob {
     public EmailJob() {
     }
 
-    public EmailJob(String password, String toEmail, String subject, String body, String toName) {
+    /**
+     * Constructor
+     * 
+     * @param toEmail
+     * @param subject
+     * @param body
+     * @param toName
+     */
+    public EmailJob(String toEmail, String subject, String body, String toName) {
         this.body = body;
         this.toEmail = toEmail;
         this.subject = subject;
         this.body = body;
-        this.password = password;
         this.toName = toName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getToEmail() {

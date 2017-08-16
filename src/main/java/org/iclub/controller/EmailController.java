@@ -7,7 +7,6 @@ import org.iclub.email.EmailJob;
 import org.iclub.model.EmailForm;
 import org.iclub.model.User;
 import org.iclub.service.EmailService;
-import org.iclub.service.EmailServiceImpl;
 import org.iclub.service.SettingService;
 import org.iclub.service.UserService;
 import org.iclub.validator.EmailValidator;
@@ -34,14 +33,10 @@ public class EmailController {
     private final static String EMAIL_HEAD = "<head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/></head>";
 
     @Autowired
-    public EmailController(SettingService settingService, UserService userService, EmailValidator emailFormValidator) {
+    public EmailController(SettingService settingService, UserService userService, EmailService emailService, EmailValidator emailFormValidator) {
         this.emailFormValidator = emailFormValidator;
         this.userService = userService;
-
-        final String fromEmail = settingService.findSettingByName(SettingService.CONTACT_EMAIL).get().getValue();
-        final String from = settingService.findSettingByName(SettingService.TITLE).get().getValue();
-
-        this.emailService = new EmailServiceImpl(from, fromEmail);
+        this.emailService = emailService;
     }
 
     @InitBinder("form")
@@ -52,8 +47,6 @@ public class EmailController {
     @RequestMapping(value = "/admin/email", method = RequestMethod.GET)
     public ModelAndView getGroupEmailPage(HttpServletRequest request) {
         final EmailForm form = new EmailForm();
-        form.setFromEmail(emailService.getFromEmail());
-
         final ModelAndView mv = new ModelAndView("admin_email", "form", form);
 
         if("true".equals(request.getParameter("sent"))) {
@@ -73,7 +66,7 @@ public class EmailController {
 
         for (User user : userService.getAllUsers()) {
             if (!user.isAdmin() && !user.isDisabled()) {
-                emailService.addJob(new EmailJob(form.getPassword(), user.getEmail(), form.getSubject(), body, user.getFirstName() + " " + user.getLastName()));
+                emailService.addJob(new EmailJob(user.getEmail(), form.getSubject(), body, user.getFirstName() + " " + user.getLastName()));
             }
         }
 

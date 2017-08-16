@@ -27,9 +27,10 @@ public class EmailUtil {
     private static final String UTF8 = "UTF-8";
 
     /**
-     * Send HTML Email
+     * Send Html Email
      * 
      * @param fromEmail
+     * @param smtpEmail
      * @param password
      * @param name
      * @param toEmail
@@ -37,13 +38,13 @@ public class EmailUtil {
      * @param body
      * @param toName
      */
-    public static void sendHtmlEmail(String fromEmail, String password, String name, String toEmail, String subject, String body, String toName) {
+    public static void sendHtmlEmail(String fromEmail, String smtpEmail, String password, String name, String toEmail, String subject, String body, String toName) {
         try {
             HtmlEmail email = new HtmlEmail();
             email.setSSLOnConnect(true);
             email.setHostName(SSLEmail.host);
             email.setSmtpPort(Integer.parseInt(SSLEmail.port));
-            email.setAuthenticator(new DefaultAuthenticator(fromEmail, password));
+            email.setAuthenticator(new DefaultAuthenticator(smtpEmail, password));
             email.addTo(toEmail, toName);
             email.setFrom(fromEmail, name);
             email.setSubject(subject);
@@ -60,7 +61,6 @@ public class EmailUtil {
             final MimeMessage msg = new MimeMessage(SSLEmail.getSession(fromEmail, password));
 
             msg.addHeader("Content-Type", "text/html; charset=UTF-8");
-            // msg.addHeader("format", "flowed");
             msg.addHeader("Content-Transfer-Encoding", "quoted-printable");
             msg.setFrom(new InternetAddress(fromEmail, name));
             msg.setReplyTo(InternetAddress.parse(fromEmail, false));

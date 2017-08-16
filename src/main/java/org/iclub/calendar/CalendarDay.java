@@ -1,5 +1,6 @@
 package org.iclub.calendar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class CalendarDay {
     private Integer dayOfWeek;
     private List<CalendarEvent> events = new ArrayList<>();
 
+    final DecimalFormat yearFormat = new DecimalFormat("####");
+
     public CalendarDay() {
     }
 
@@ -19,6 +22,10 @@ public class CalendarDay {
         this.month = month;
         this.year = year;
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public String getYearLabel() {
+        return yearFormat.format(year);
     }
 
     public Integer getYear() {

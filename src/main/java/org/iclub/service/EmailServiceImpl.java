@@ -8,35 +8,33 @@ import org.iclub.email.EmailJob;
 import org.iclub.email.EmailUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EmailServiceImpl implements EmailService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EmailServiceImpl.class);
 
     private final BlockingQueue<EmailJob> queue = new ArrayBlockingQueue<EmailJob>(1000);
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
-    private final String fromEmail;
 
-    public EmailServiceImpl(String from, String fromEmail) {
-        this.fromEmail = fromEmail;
-
+    public EmailServiceImpl(SettingService settingService) {
         executorService.execute(new Runnable() {
             public void run() {
                 while (true) {
                     try {
                         final EmailJob job = queue.take();
-                        EmailUtil.sendHtmlEmail(fromEmail, job.getPassword(), from, job.getToEmail(), job.getSubject(), job.getBody(), job.getToName());
+                        final String from = settingService.findSettingByName(SettingService.TITLE).get().getValue();
+                        final String fromEmail = settingService.findSettingByName(SettingService.CONTACT_EMAIL).get().getValue();
+                        final String smtpEmail = settingService.findSettingByName(SettingService.SMTP_EMAIL).get().getValue();
+                        final String password = settingService.findSettingByName(SettingService.SMTP_PASSWORD).get().getValue();
+                        EmailUtil.sendHtmlEmail(fromEmail, smtpEmail, password, from, job.getToEmail(), job.getSubject(), job.getBody(), job.getToName());
                     } catch(InterruptedException e) {
                         LOGGER.error("Email Service", e);
                     }
                 }
             }
         });
-    }
-
-    @Override
-    public String getFromEmail() {
-        return fromEmail;
     }
 
     @Override

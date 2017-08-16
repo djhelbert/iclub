@@ -1,5 +1,5 @@
 package org.iclub.service;
 
 public interface FreemarkerConfigService {
-	public void refresh();
+    public void refresh();
 }

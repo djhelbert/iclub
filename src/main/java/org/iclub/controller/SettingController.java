@@ -63,15 +63,6 @@ public class SettingController {
             return "admin_settings";
         }
 
-        createSetting(SettingService.TITLE, form.getTitle());
-        createSetting(SettingService.DESCRIPTION, form.getDescription());
-
-        createSetting(SettingService.FACEBOOK, form.getFacebook());
-        createSetting(SettingService.TWITTER, form.getTwitter());
-        createSetting(SettingService.PINTEREST, form.getPinterest());
-        createSetting(SettingService.YOUTUBE, form.getYoutube());
-        createSetting(SettingService.STRAVA, form.getStrava());
-
         createSetting(SettingService.CONTACT_ADDRESS_LINE1, form.getContactAddressLine1());
         createSetting(SettingService.CONTACT_ADDRESS_LINE2, form.getContactAddressLine2());
         createSetting(SettingService.CONTACT_EMAIL, form.getContactEmail());
@@ -79,6 +70,17 @@ public class SettingController {
         createSetting(SettingService.CONTACT_STATE, form.getContactState());
         createSetting(SettingService.CONTACT_ZIP_CODE, form.getContactZipCode());
         createSetting(SettingService.CONTACT_PHONE, form.getContactPhone());
+        createSetting(SettingService.DESCRIPTION, form.getDescription());
+        createSetting(SettingService.FACEBOOK, form.getFacebook());
+        createSetting(SettingService.FACEBOOK_APP_ID, form.getFacebookAppId());
+        createSetting(SettingService.FACEBOOK_APP_SECRET, form.getFacebookAppSecret());
+        createSetting(SettingService.PINTEREST, form.getPinterest());
+        createSetting(SettingService.STRAVA, form.getStrava());
+        createSetting(SettingService.SMTP_EMAIL, form.getSmtpEmail());
+        createSetting(SettingService.SMTP_PASSWORD, form.getSmtpPassword());
+        createSetting(SettingService.TITLE, form.getTitle());
+        createSetting(SettingService.TWITTER, form.getTwitter());
+        createSetting(SettingService.YOUTUBE, form.getYoutube());
 
         freemarkerConfigService.refresh();
 
