@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
+
 import javax.transaction.Transactional;
 import org.iclub.calendar.CalendarDay;
 import org.iclub.calendar.CalendarUtil;
@@ -89,16 +91,8 @@ public class EventServiceImpl implements EventService {
         LOGGER.debug("Getting Event Days");
 
         final List<CalendarDay> calendarDays = new ArrayList<CalendarDay>();
-        final Calendar cal = Calendar.getInstance();
 
-        while (cal.get(Calendar.DAY_OF_WEEK) > Calendar.SUNDAY) {
-            cal.add(Calendar.DATE, -1);
-        }
-
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-
-        for (Event e : findEvents(cal.getTime())) {
+        for (Event e : findEvents(getStartOfWeek())) {
             CalendarDay day = new CalendarDay();
             day.setDayOfWeek(e.getDayOfWeek());
             day.setDay(e.getDay());
@@ -124,16 +118,7 @@ public class EventServiceImpl implements EventService {
             }
         }
 
-        final Calendar cal = Calendar.getInstance();
-
-        while (cal.get(Calendar.DAY_OF_WEEK) > Calendar.SUNDAY) {
-            cal.add(Calendar.DATE, -1);
-        }
-
-        cal.set(Calendar.HOUR, 0);
-        cal.set(Calendar.MINUTE, 0);
-
-        for (Event we : findEvents(cal.getTime())) {
+        for (Event we : findEvents(getStartOfWeek())) {
             for (CalendarDay day : calendarDays) {
                 if (day.getDay() == we.getDay() && day.getMonth() == we.getMonth() && day.getYear() == we.getYear()) {
                     day.getEvents().add(we.getCalendarEvent());
@@ -142,5 +127,20 @@ public class EventServiceImpl implements EventService {
         }
 
         return calendarDays;
+    }
+
+    private Date getStartOfWeek() {
+        final Calendar cal = Calendar.getInstance();
+
+        while (cal.get(Calendar.DAY_OF_WEEK) > Calendar.SUNDAY) {
+            cal.add(Calendar.DATE, -1);
+        }
+
+        cal.setTimeZone(TimeZone.getTimeZone("UTC"));
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+
+        return cal.getTime();
     }
 }
