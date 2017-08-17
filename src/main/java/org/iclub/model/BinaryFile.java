@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
-import java.net.URL;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 
 @Entity
 @Table(name = "binary_file")
@@ -42,15 +44,13 @@ public class BinaryFile {
     @Lob
     private byte[] data;
 
-    /** 16MB */
-    private static long MAX_FILE_SIZE = 16777215;
-
-    private static Class<? extends Boolean> clazz = (new Boolean(true)).getClass();
+    /** 32MB */
+    private static long MAX_FILE_SIZE = 320000000;
 
     public static BinaryFile getBinaryFile(String path, String mimetype, Boolean logo, Boolean scroller,
-            Boolean resource) throws IOException, URISyntaxException {
-        final URL url = clazz.getResource(path);
-        final File file = new File(url.toURI());
+            Boolean resource, ResourceLoader resourceLoader) throws IOException, URISyntaxException {
+        final Resource fileResource = resourceLoader.getResource("classpath:" + path);
+        final File file = fileResource.getFile();
 
         BinaryFile bf = new BinaryFile();
 

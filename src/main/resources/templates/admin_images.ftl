@@ -1,20 +1,20 @@
 <#include "header.ftl">
 
 <#if message??>
-<div class="container" style="margin-bottom:10px">
+<div class="container" style="margin-bottom:5px">
   <div class="alert alert-success">
     ${message}
   </div>
 </div>
 </#if>
 
-<div class="container" style="margin-bottom:10px">
+<div class="container" style="margin-bottom:5px">
   <ul class="breadcrumb">
     <li class="active">Logo</li>
   </ul>
 </div>
 
-<div class="container" style="margin-bottom:10px">
+<div class="container" style="margin-bottom:5px">
   <div class="row">
     <div class="col-md-12">
         <div class="testiminial-block">

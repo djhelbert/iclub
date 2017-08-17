@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -20,6 +21,9 @@ public class SponsorServiceTest {
 
     @Autowired
     private SponsorService sponsorService;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @Test
     public void testService() {
@@ -34,7 +38,7 @@ public class SponsorServiceTest {
         sponsor.setDescription("description");
         sponsor.setName("name");
         try {
-            sponsor.setBinaryFile(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true));
+            sponsor.setBinaryFile(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true, resourceLoader));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
             assert false;

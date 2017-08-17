@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -23,25 +24,29 @@ public class BinaryFileRepositoryTest {
     @Autowired
     private BinaryFileRepository binaryFileRepository;
 
-	private static final String MIMETYPE = "image/png";
+    @Autowired
+    private ResourceLoader resourceLoader;
 
-	@After
-	public void after() {
-		entityManager.clear();
-	}
+    private static final String MIMETYPE = "image/png";
 
-	@Test
-	public void testRepository() {
-		try {
-			binaryFileRepository.save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, true, false));
-			List<BinaryFile> scrollers = binaryFileRepository.findByScroller(true);
-			assert scrollers.size() > 0;
-		} catch (URISyntaxException e) {
-			e.printStackTrace();
-			assert false;
-		} catch (IOException e) {
-			e.printStackTrace();
-			assert false;
-		}
-	}
+    @After
+    public void after() {
+        entityManager.clear();
+    }
+
+    @Test
+    public void testRepository() {
+        try {
+            binaryFileRepository
+                    .save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, true, false, resourceLoader));
+            List<BinaryFile> scrollers = binaryFileRepository.findByScroller(true);
+            assert scrollers.size() > 0;
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            assert false;
+        } catch (IOException e) {
+            e.printStackTrace();
+            assert false;
+        }
+    }
 }
