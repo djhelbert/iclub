@@ -155,6 +155,6 @@ public class CalendarDay {
 
     @Override
     public String toString() {
-        return "{" + getDayLabel() + " " + getMonthLabel() + " " + day + ", " + year + "}";
+        return "Day{" + getDayLabel() + " " + getMonthLabel() + " " + day + ", " + year + "}";
     }
 }

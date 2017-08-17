@@ -18,27 +18,27 @@ import org.springframework.context.annotation.ComponentScan;
  *
  */
 @SpringBootApplication
-@ComponentScan("org.iclub") 
+@ComponentScan("org.iclub")
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
 
-	/**
-	 * Main
-	 * 
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
-	}
+    /**
+     * Main
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 
     @Bean
     @ConditionalOnWebApplication
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
-        	SeedDataService seedService = ctx.getBean(SeedDataService.class);
+            SeedDataService seedService = ctx.getBean(SeedDataService.class);
             if (seedService.init()) {
-            	FreemarkerConfigService service = ctx.getBean(FreemarkerConfigService.class);
-            	service.refresh();
+                FreemarkerConfigService service = ctx.getBean(FreemarkerConfigService.class);
+                service.refresh();
             }
         };
     }

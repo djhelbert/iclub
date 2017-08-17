@@ -33,18 +33,19 @@ public class SponsorController {
     @RequestMapping(value = "/admin/sponsors", method = RequestMethod.POST)
     public String handleSponsorCreateForm(@RequestParam("name") String name, @RequestParam("description") String description, @RequestParam("url") String url, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         try {
-            BinaryFile binaryFile = new BinaryFile();
+            final BinaryFile binaryFile = new BinaryFile();
             binaryFile.setName(file.getOriginalFilename());
             binaryFile.setMimetype(file.getContentType());
 
             try {
                 binaryFile.setData(file.getBytes());
 
-                Sponsor sponsor = new Sponsor();
+                final Sponsor sponsor = new Sponsor();
                 sponsor.setName(name);
                 sponsor.setDescription(description);
                 sponsor.setUrl(url);
                 sponsor.setBinaryFile(binaryFile);
+
                 sponsorService.save(sponsor);
             } catch (IOException e) {
                 LOGGER.error("Error setting binary file data.", e);

@@ -18,7 +18,7 @@ public class ResourceConfig extends WebMvcConfigurerAdapter {
         }
 
         if (!registry.hasMappingForPattern("/static/**")) {
-    		registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-    	}
+           registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+        }
     }
 }

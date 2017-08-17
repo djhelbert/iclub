@@ -64,7 +64,7 @@ public class ImageController {
             Optional<BinaryFile> optional = binaryFileService.findBinaryFileByLogo(Boolean.TRUE);
 
             if ( optional.isPresent() ) {
-                BinaryFile binaryFile = optional.get();
+                final BinaryFile binaryFile = optional.get();
                 binaryFile.setName(file.getOriginalFilename());
                 binaryFile.setMimetype(file.getContentType());
                 binaryFile.setData(file.getBytes());
@@ -89,7 +89,7 @@ public class ImageController {
     @RequestMapping(value = "/admin/images/scroller", method = RequestMethod.POST)
     public String handleScrollerImageCreateForm(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
         try {
-            BinaryFile binaryFile = new BinaryFile();
+            final BinaryFile binaryFile = new BinaryFile();
             binaryFile.setName(file.getOriginalFilename());
             binaryFile.setMimetype(file.getContentType());
             binaryFile.setData(file.getBytes());
@@ -98,7 +98,6 @@ public class ImageController {
             binaryFile.setResource(Boolean.FALSE);
 
             binaryFileService.save(binaryFile);
-
             freemarkerConfigService.refresh();
         } catch (Exception e) {
             LOGGER.error("Save Image Error", e);

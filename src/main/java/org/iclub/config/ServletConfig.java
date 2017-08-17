@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnWebApplication
 public class ServletConfig {
 
-	@Bean
-	public ServletRegistrationBean servletRegistrationBean(BinaryFileServlet binaryFileServlet) {
-	    return new ServletRegistrationBean(binaryFileServlet, "/file");
-	}
+    @Bean
+    public ServletRegistrationBean servletRegistrationBean(BinaryFileServlet binaryFileServlet) {
+        return new ServletRegistrationBean(binaryFileServlet, "/file");
+    }
 
 }

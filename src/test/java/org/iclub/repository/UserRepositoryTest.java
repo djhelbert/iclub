@@ -34,10 +34,10 @@ public class UserRepositoryTest extends AbstractRepositoryTest {
     public void testFindByEmail() {
         entityManager.persist(getUser("admin@email.com", Role.ADMIN, "hashed"));
 
-        Optional<User> usr = userRepository.findUserByEmail("admin@email.com");
+        final Optional<User> usr = userRepository.findUserByEmail("admin@email.com");
         assertEquals("admin@email.com", usr.get().getEmail());
 
-        List<User> list = userRepository.findByRole(Role.ADMIN);
+        final List<User> list = userRepository.findByRole(Role.ADMIN);
         assert list.size() > 0;
     }
 }

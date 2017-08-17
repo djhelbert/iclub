@@ -34,11 +34,11 @@ public class BinaryFileServiceTest {
         try {
             binaryFileService.save(BinaryFile.getBinaryFile("/image.png", MIMETYPE, false, false, true, resourceLoader));
 
-            List<BinaryFile> resources = binaryFileService.findByResource(Boolean.TRUE);
+            final List<BinaryFile> resources = binaryFileService.findByResource(Boolean.TRUE);
             assert resources.size() > 0;
 
-            InputStream in = new ByteArrayInputStream(resources.get(0).getData());
-            BufferedImage image = ImageIO.read(in);
+            final InputStream in = new ByteArrayInputStream(resources.get(0).getData());
+            final BufferedImage image = ImageIO.read(in);
             assert image.getHeight() == 32;
             assert image.getWidth() == 32;
         } catch (URISyntaxException e) {

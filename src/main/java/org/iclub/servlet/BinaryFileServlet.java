@@ -18,47 +18,47 @@ import org.springframework.stereotype.Component;
 @Component
 public class BinaryFileServlet extends HttpServlet {
 
-	private BinaryFileService binaryFileService;
+    private BinaryFileService binaryFileService;
 
-	private static final long serialVersionUID = -8674792365261419577L;
-	private static final Logger LOGGER = LoggerFactory.getLogger(BinaryFileServlet.class);
+    private static final long serialVersionUID = -8674792365261419577L;
+    private static final Logger LOGGER = LoggerFactory.getLogger(BinaryFileServlet.class);
 
-	@Autowired
-	public BinaryFileServlet(BinaryFileService binaryFileService) {
-		super();
-		this.binaryFileService = binaryFileService;
-	}
+    @Autowired
+    public BinaryFileServlet(BinaryFileService binaryFileService) {
+        super();
+        this.binaryFileService = binaryFileService;
+    }
 
-	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) {
-		final String id = req.getParameter("id");
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) {
+        final String id = req.getParameter("id");
         final Long idParameter = new Long(id);
 
-		BinaryFile binaryFile = binaryFileService.getBinaryFile(idParameter);
-		resp.setContentType(binaryFile.getMimetype());
+        final BinaryFile binaryFile = binaryFileService.getBinaryFile(idParameter);
+        resp.setContentType(binaryFile.getMimetype());
 
-		final ByteArrayInputStream is = new ByteArrayInputStream(binaryFile.getData());
-		OutputStream out = null;
+        final ByteArrayInputStream is = new ByteArrayInputStream(binaryFile.getData());
+        OutputStream out = null;
 
-		try {
-			out = resp.getOutputStream();
-			byte[] buf = new byte[binaryFile.getData().length];
-		    int count = 0;
+        try {
+            out = resp.getOutputStream();
+            byte[] buf = new byte[binaryFile.getData().length];
+            int count = 0;
 
-			while ((count = is.read(buf)) >= 0) {
-			     out.write(buf, 0, count);
-			}
-		} catch (IOException e) {
-			LOGGER.error("BinaryFileServlet.doGet()", e);
-		}
+            while ((count = is.read(buf)) >= 0) {
+                out.write(buf, 0, count);
+            }
+        } catch (IOException e) {
+            LOGGER.error("BinaryFileServlet.doGet()", e);
+        }
 
-	    try {
-	    	if (out != null) {
-			  out.close();
-	    	}
-		} catch (IOException e) {
-			LOGGER.error("BinaryFileServlet.doGet()", e);
-		}
-	}
-	
+        try {
+            if (out != null) {
+                out.close();
+            }
+        } catch (IOException e) {
+            LOGGER.error("BinaryFileServlet.doGet()", e);
+        }
+    }
+
 }

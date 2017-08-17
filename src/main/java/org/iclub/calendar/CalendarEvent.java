@@ -97,4 +97,9 @@ public class CalendarEvent {
     public void setPm(boolean pm) {
         this.pm = pm;
     }
+
+    @Override
+    public String toString() {
+        return "Event{" + name + " " + hour + " " + minute + "}";
+    }
 }

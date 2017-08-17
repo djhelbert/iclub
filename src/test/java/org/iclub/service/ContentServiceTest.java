@@ -19,7 +19,7 @@ public class ContentServiceTest {
     @Test
     public void testService() {
         contentService.save(getContent());
-        Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
+        final Optional<Content> optional = contentService.getContentByName(ContentService.ABOUT);
         assert optional.isPresent();
     }
 

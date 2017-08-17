@@ -47,7 +47,7 @@ public class SettingController {
 
     @RequestMapping(value = "/admin/settings", method = RequestMethod.GET)
     public ModelAndView getUserCreatePage(HttpServletRequest request) {
-        ModelAndView mv = new ModelAndView("admin_settings", "form", settingService.getSettingForm());
+        final ModelAndView mv = new ModelAndView("admin_settings", "form", settingService.getSettingForm());
 
         if("true".equals(request.getParameter("updated"))) {
             mv.addObject("message", "Settings Updated");
@@ -101,7 +101,7 @@ public class SettingController {
         } else {
             LOGGER.debug(name + " set to " + value);
 
-            Setting setting = optional.get();
+            final Setting setting = optional.get();
             setting.setValue(value);
 
             settingService.save(setting);

@@ -37,17 +37,17 @@ public class EventServiceTest {
         eventService.saveEvent(getEvent());
         assert 1 == eventService.findAllEvents().size();
 
-        Calendar start = Calendar.getInstance();
+        final Calendar start = Calendar.getInstance();
         start.add(Calendar.DATE, -1);
 
-        Calendar end = Calendar.getInstance();
+        final Calendar end = Calendar.getInstance();
         end.add(Calendar.DATE, 3);
 
         assert 1 == eventService.findEvents(start.getTime(), end.getTime()).size();
     }
 
     private Event getEvent() {
-        Event we = new Event();
+        final Event we = new Event();
         we.setTimestamp(new Date());
         we.setName("Sunday Party");
         we.setDescription("Hey bud let's party!");
@@ -58,7 +58,7 @@ public class EventServiceTest {
     }
 
     private WeeklyEvent getWeeklyEvent() {
-        WeeklyEvent we = new WeeklyEvent();
+        final WeeklyEvent we = new WeeklyEvent();
         we.setDayOfWeek(Calendar.SUNDAY);
         we.setName("Sunday Fun Day");
         we.setDescription("No work today let's play.");

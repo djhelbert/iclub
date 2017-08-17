@@ -26,7 +26,7 @@ public class SettingRepositoryTest extends AbstractRepositoryTest {
     public void testFindByName() {
         entityManager.persist(getSetting("test_name", "test_value"));
 
-        Optional<Setting> setting = settingRepository.findSettingByName("test_name");
+        final Optional<Setting> setting = settingRepository.findSettingByName("test_name");
         assertEquals("test_name", setting.get().getName());
         assertEquals("test_value", setting.get().getValue());
     }

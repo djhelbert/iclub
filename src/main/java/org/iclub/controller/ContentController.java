@@ -71,11 +71,11 @@ public class ContentController {
         Optional<Content> content = contentService.getContentByName(ContentService.TERMS);
 
         if (content.isPresent()) {
-            Content aboutContent = content.get();
+            final Content aboutContent = content.get();
             aboutContent.setContentText(form.getContent());
             contentService.save(aboutContent);
         } else {
-            Content aboutContent = new Content();
+            final Content aboutContent = new Content();
             aboutContent.setName(ContentService.TERMS);
             aboutContent.setContentText(form.getContent());
             contentService.save(aboutContent);
@@ -93,11 +93,11 @@ public class ContentController {
         Optional<Content> content = contentService.getContentByName(ContentService.ABOUT);
 
         if (content.isPresent()) {
-            Content aboutContent = content.get();
+            final Content aboutContent = content.get();
             aboutContent.setContentText(form.getContent());
             contentService.save(aboutContent);
         } else {
-            Content aboutContent = new Content();
+            final Content aboutContent = new Content();
             aboutContent.setName(ContentService.ABOUT);
             aboutContent.setContentText(form.getContent());
             contentService.save(aboutContent);

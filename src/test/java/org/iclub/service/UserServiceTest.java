@@ -20,12 +20,12 @@ public class UserServiceTest {
     @Test
     public void testService() {
         userService.save(getUserForm("test@email.net", Role.USER, "pwd"));
-        Optional<User> optional = userService.getUserByEmail("test@email.net");
+        final Optional<User> optional = userService.getUserByEmail("test@email.net");
         assert optional.isPresent();
     }
 
     public UserForm getUserForm(String email, Role role, String password) {
-        UserForm user = new UserForm();
+        final UserForm user = new UserForm();
         user.setEmail(email);
         user.setRole(role);
         user.setFirstName("First");

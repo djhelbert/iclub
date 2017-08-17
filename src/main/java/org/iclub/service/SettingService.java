@@ -29,8 +29,6 @@ public interface SettingService {
     String TWITTER = "TWITTER";
 
     Optional<Setting> findSettingByName(String name);
-
     Setting save(Setting setting);
-
     SettingForm getSettingForm();
 }
