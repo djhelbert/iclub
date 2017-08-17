@@ -13,11 +13,20 @@
     </div>
   </div>
   <div class="col-sm-8">
+    <table style="width:100%">
+    <tr>
     <#if LOGO??>
-      <div>
+      <td align="left">
         <img src="/file?id=${LOGO}" alt="Logo" >
-      </div>
+      </td>
     </#if>
+    <#if BANNER??>
+      <td align="right">
+        ${BANNER}
+      </td>
+    </#if>
+    </tr>
+    </table>
     <div>&nbsp;</div>
     <div>
       ${DESCRIPTION}

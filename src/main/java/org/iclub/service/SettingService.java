@@ -25,6 +25,7 @@ public interface SettingService {
     String SMTP_EMAIL = "SMTP_EMAIL";
     String SMTP_PASSWORD = "SMTP_PASSWORD";
     String STRAVA = "STRAVA";
+    String BANNER = "BANNER";
     String TITLE = "TITLE";
     String TWITTER = "TWITTER";
 

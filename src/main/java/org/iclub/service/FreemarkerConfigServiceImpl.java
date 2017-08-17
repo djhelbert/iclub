@@ -53,6 +53,8 @@ public class FreemarkerConfigServiceImpl implements FreemarkerConfigService {
                     getValue(settingService.findSettingByName(SettingService.YOUTUBE)));
             configuration.setSharedVariable(SettingService.STRAVA,
                     getValue(settingService.findSettingByName(SettingService.STRAVA)));
+            configuration.setSharedVariable(SettingService.BANNER,
+                    getValue(settingService.findSettingByName(SettingService.BANNER)));
             configuration.setSharedVariable(SettingService.CONTACT_EMAIL,
                     getValue(settingService.findSettingByName(SettingService.CONTACT_EMAIL)));
             configuration.setSharedVariable(SettingService.CONTACT_ADDRESS_LINE1,

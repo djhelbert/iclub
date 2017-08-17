@@ -67,6 +67,10 @@
       <div class="col-sm-10"><@spring.formInput "form.strava" "class='form-control' maxlength='250'" "text"/></div>
     </div>
     <div class="form-group">
+      <label class="control-label col-sm-2" for="banner">Banner</label>
+      <div class="col-sm-10"><@spring.formInput "form.banner" "class='form-control' maxlength='250'" "text"/></div>
+    </div>
+    <div class="form-group">
       <label class="control-label col-sm-2" for="contactEmail">Contact Email</label>
       <div class="col-sm-10"><@spring.formInput "form.contactEmail" "class='form-control' maxlength='50'" "text"/></div>
     </div>

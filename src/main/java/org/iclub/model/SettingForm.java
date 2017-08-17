@@ -20,6 +20,7 @@ public class SettingForm {
     private String contactZipCode = "";
     private String contactPhone = "";
     private String strava = "";
+    private String banner = "";
 
     public String getDescription() {
         return description;
@@ -131,6 +132,14 @@ public class SettingForm {
 
     public void setStrava(String strava) {
         this.strava = strava;
+    }
+
+    public String getBanner() {
+        return banner;
+    }
+
+    public void setBanner(String banner) {
+        this.banner = banner;
     }
 
     public String getFacebookAppId() {

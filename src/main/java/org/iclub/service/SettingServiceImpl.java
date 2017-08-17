@@ -57,6 +57,7 @@ public class SettingServiceImpl implements SettingService {
         form.setSmtpEmail(getValue(settingRepository.findSettingByName(SettingService.SMTP_EMAIL)));
         form.setSmtpPassword(getValue(settingRepository.findSettingByName(SettingService.SMTP_PASSWORD)));
         form.setStrava(getValue(settingRepository.findSettingByName(SettingService.STRAVA)));
+        form.setBanner(getValue(settingRepository.findSettingByName(SettingService.BANNER)));
         form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));
         form.setTwitter(getValue(settingRepository.findSettingByName(SettingService.TWITTER)));
         form.setYoutube(getValue(settingRepository.findSettingByName(SettingService.YOUTUBE)));
