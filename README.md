@@ -26,3 +26,8 @@ spring.freemarker.expose-request-attributes=true
 spring.freemarker.expose-spring-macro-helpers=true
 server.port=8080
 ```
+
+# Default Admin Credentials
+```
+admin/admin
+```
