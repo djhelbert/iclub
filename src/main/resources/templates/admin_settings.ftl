@@ -51,11 +51,11 @@
       <div class="col-sm-10"><@spring.formInput "form.facebookAppSecret" "class='form-control' maxlength='100'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="twitter">Twitter Handle</label>
+      <label class="control-label col-sm-2" for="twitter">Twitter Handle @</label>
       <div class="col-sm-10"><@spring.formInput "form.twitter" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pinterest">Pinterest Group</label>
+      <label class="control-label col-sm-2" for="pinterest">Pinterest Board Name</label>
       <div class="col-sm-10"><@spring.formInput "form.pinterest" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
