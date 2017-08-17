@@ -30,7 +30,7 @@
                     <ul class="social">
                         <li><a href="https://www.facebook.com/${FACEBOOK}"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="https://www.twitter.com/${TWITTER}"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="https://www.twitter.com/${PINTEREST}"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="https://www.pinterest.com/${PINTEREST}"><i class="fa fa-pinterest"></i></a></li>
                         <li><a href="https://www.youtube.com/user/${YOUTUBE}"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
