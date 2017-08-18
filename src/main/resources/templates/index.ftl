@@ -27,9 +27,8 @@
     </#if>
     </tr>
     </table>
-    <div>&nbsp;</div>
     <div>
-      ${DESCRIPTION}
+      <p>${DESCRIPTION}</p>
     </div>
     <div>&nbsp;</div>
 
@@ -104,7 +103,7 @@
                             <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
-                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"><#else><i class="glyphicon glyphicon-calendar text-muted"></#if></i> ${event.name}
                               </div>
                             </td>
                           </tr>
@@ -112,7 +111,7 @@
                             <td class="agenda-time">${event.hour}:${event.paddedMinute} <#if event.pm>PM<#else>AM</#if> <#if event.address?has_content><a href="${event.mapUrl}"><i class="glyphicon  glyphicon-map-marker text-muted"></i></a></#if> <#if event.url?has_content><a href="${event.url}"><i class="glyphicon glyphicon-link text-muted"></i></a></#if></td>
                             <td class="agenda-events">
                               <div class="agenda-event" title="${event.description}">
-                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"></i> </#if>${event.name}
+                                <#if event.weekly><i class="glyphicon glyphicon-repeat text-muted"><#else><i class="glyphicon glyphicon-calendar text-muted"></#if></i> ${event.name}
                               </div>
                             </td>
                           </tr>
