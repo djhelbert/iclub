@@ -16,36 +16,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Autowired
+    @Autowired
     private UserDetailsService userDetailsService;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-	    http.authorizeRequests()
-	            .antMatchers("/", "/register", "/content", "/sponsors", "/file", "/static").permitAll()
-	            .antMatchers("/admin/**").hasAuthority("ADMIN")
-	            .anyRequest().fullyAuthenticated()
-	            .and()
-	            .formLogin()
-	            .loginPage("/login")
-	            .failureUrl("/login?error")
-	            .usernameParameter("email")
-	            .permitAll()
-	            .and()
-	            .logout()
-	            .logoutUrl("/logout")
-	            .deleteCookies("remember-me")
-	            .logoutSuccessUrl("/")
-	            .permitAll()
-	            .and()
-	            .rememberMe();
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().antMatchers("/", "/register", "/content", "/sponsors", "/file", "/static", "/social").permitAll()
+                .antMatchers("/user/**").hasAuthority("USER").antMatchers("/admin/**").hasAuthority("ADMIN")
+                .anyRequest().fullyAuthenticated().and().formLogin().loginPage("/login").failureUrl("/login?error")
+                .usernameParameter("email").permitAll().and().logout().logoutUrl("/logout").deleteCookies("remember-me")
+                .logoutSuccessUrl("/").permitAll().and().rememberMe();
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .userDetailsService(userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
 }

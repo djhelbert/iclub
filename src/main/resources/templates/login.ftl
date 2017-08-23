@@ -32,7 +32,7 @@
 
         <div class="input-group">
           <div class="checkbox" style="margin-top: 0px;">
-            <label><input id="passwordConfirm" type="checkbox" name="remember" value="1"> Remember Me</label>
+            <label><input id="remember-me" type="checkbox" name="remember-me" value="1"> Remember Me</label>
           </div>
         </div>
 
