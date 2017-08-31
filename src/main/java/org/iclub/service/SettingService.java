@@ -21,6 +21,7 @@ public interface SettingService {
     String YOUTUBE = "YOUTUBE";
     String CONTACT_EMAIL = "CONTACT_EMAIL";
     String LOGO = "LOGO";
+    String RSS = "RSS";
     String SCROLLERS = "SCROLLERS";
     String SMTP_EMAIL = "SMTP_EMAIL";
     String SMTP_PASSWORD = "SMTP_PASSWORD";

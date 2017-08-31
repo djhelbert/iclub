@@ -19,6 +19,7 @@ public class SettingForm {
     private String contactState = "";
     private String contactZipCode = "";
     private String contactPhone = "";
+    private String rss = "";
     private String strava = "";
     private String banner = "";
 
@@ -172,5 +173,13 @@ public class SettingForm {
 
     public void setFacebookAppSecret(String facebookAppSecret) {
         this.facebookAppSecret = facebookAppSecret;
+    }
+
+    public String getRss() {
+        return rss;
+    }
+
+    public void setRss(String rss) {
+        this.rss = rss;
     }
 }

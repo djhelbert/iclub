@@ -75,6 +75,10 @@
       <div class="col-sm-10"><@spring.formInput "form.contactEmail" "class='form-control' maxlength='50'" "text"/></div>
     </div>
     <div class="form-group">
+      <label class="control-label col-sm-2" for="rss">RSS Feed URL</label>
+      <div class="col-sm-10"><@spring.formInput "form.rss" "class='form-control' maxlength='50'" "text"/></div>
+    </div>
+    <div class="form-group">
       <label class="control-label col-sm-2" for="smtpEmail">SMTP Email</label>
       <div class="col-sm-10"><@spring.formInput "form.smtpEmail" "class='form-control' maxlength='50'" "text"/></div>
     </div>

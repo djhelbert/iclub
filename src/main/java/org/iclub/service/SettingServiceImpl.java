@@ -54,6 +54,7 @@ public class SettingServiceImpl implements SettingService {
         form.setFacebookAppId(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_ID)));
         form.setFacebookAppSecret(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_SECRET)));
         form.setPinterest(getValue(settingRepository.findSettingByName(SettingService.PINTEREST)));
+        form.setRss(getValue(settingRepository.findSettingByName(SettingService.RSS)));
         form.setSmtpEmail(getValue(settingRepository.findSettingByName(SettingService.SMTP_EMAIL)));
         form.setSmtpPassword(getValue(settingRepository.findSettingByName(SettingService.SMTP_PASSWORD)));
         form.setStrava(getValue(settingRepository.findSettingByName(SettingService.STRAVA)));

@@ -96,6 +96,12 @@
             <version>19.0</version>
         </dependency>
 
+        <dependency>
+           <groupId>com.rometools</groupId>
+           <artifactId>rome</artifactId>
+           <version>1.7.4</version>
+        </dependency>
+
         <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
