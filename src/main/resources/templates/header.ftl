@@ -251,7 +251,7 @@
             <ul class="nav navbar-nav">
               <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
               <li><a href="/content?name=ABOUT"><span class="glyphicon glyphicon-file"></span> About</a></li>
-              <li><a href="/social"><span class="glyphicon glyphicon-globe"></span> Social</a></li>
+              <li><a href="/news"><span class="glyphicon glyphicon-globe"></span> News</a></li>
               <li><a href="/sponsors"><span class="glyphicon glyphicon-heart"></span> Sponsors</a></li>
               <#if currentUser?? && currentUser.role == "ADMIN">
               <li class="dropdown">

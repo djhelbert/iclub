@@ -20,15 +20,15 @@ import facebook4j.FacebookException;
 
 @Controller
 @ConditionalOnWebApplication
-public class SocialController {
+public class NewsController {
 
     private SocialService socialService;
     private LoadingCache<String, Facebook> cache;
 
     private static final String KEY = "key";
-    private static final Logger LOGGER = LoggerFactory.getLogger(SocialController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(NewsController.class);
 
-    public SocialController(SocialService socialService) {
+    public NewsController(SocialService socialService) {
         this.socialService = socialService;
 
         cache = CacheBuilder.newBuilder().expireAfterWrite(15, TimeUnit.MINUTES)
@@ -41,8 +41,8 @@ public class SocialController {
                 });
     }
 
-    @RequestMapping(value ="/social", method = RequestMethod.GET)
-    public ModelAndView socialFeed() {
+    @RequestMapping(value ="/news", method = RequestMethod.GET)
+    public ModelAndView news() {
         ModelAndView mv = null;
 
         try {
@@ -54,7 +54,7 @@ public class SocialController {
                 cache.put(KEY, facebook);
             }
 
-            mv = new ModelAndView("social", "posts", socialService.getFeed(facebook, 20));
+            mv = new ModelAndView("news", "posts", socialService.getFeed(facebook, 20));
             mv.addObject("user", socialService.getUser(facebook));
         } catch (FacebookException e) {
             LOGGER.error("Get Faceook Feed", e);
