@@ -19,7 +19,7 @@ public class Setting {
     @Column(name = "name", nullable = false, unique = false, length = 50)
     private String name;
 
-    @Column(name = "value", nullable = false, unique = false, length = 250)
+    @Column(name = "value", nullable = false, unique = false, length = 500)
     private String value;
 
     public Long getId() {

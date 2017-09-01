@@ -64,11 +64,11 @@
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="strava">Strava Embed</label>
-      <div class="col-sm-9"><@spring.formInput "form.strava" "class='form-control' maxlength='250'" "text"/></div>
+      <div class="col-sm-9"><@spring.formInput "form.strava" "class='form-control' maxlength='500'" "text"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="banner">Banner</label>
-      <div class="col-sm-9"><@spring.formInput "form.banner" "class='form-control' maxlength='250'" "text"/></div>
+      <div class="col-sm-9"><@spring.formInput "form.banner" "class='form-control' maxlength='500'" "text"/></div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-3" for="contactEmail">Contact Email</label>
