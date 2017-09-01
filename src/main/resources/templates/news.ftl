@@ -2,7 +2,7 @@
 
 <#list posts as post>
 <div class="container">
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="panel panel-default">
             <div class="panel-body">
                <section class="post-heading">
@@ -43,7 +43,6 @@
         </div>
     </div>
 </div>
-
 </#list>
 
 <#include "footer.ftl">
