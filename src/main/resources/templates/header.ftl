@@ -7,6 +7,7 @@
   <title>${TITLE}</title>
   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.3.2/css/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" href="/webjars/font-awesome/4.2.0/css/font-awesome.css" />
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
 
   <style>
 .navbar-nav>li>.dropdown-menu {

@@ -35,6 +35,7 @@
                    <div class="post-footer-option container">
                         <ul class="list-unstyled">
                             <li><a href="<#if post.permalinkUrl??>${post.permalinkUrl}</#if>"><i class="glyphicon glyphicon-link"></i> Link</a></li>
+                            <li><div class="g-plus" data-action="share"></div></li>
                             <li><a href="https://twitter.com/share" <#if post.permalinkUrl??>data-url="${post.permalinkUrl}"</#if> class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                         </ul>
                    </div>
