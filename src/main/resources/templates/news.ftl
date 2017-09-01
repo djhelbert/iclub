@@ -28,14 +28,14 @@
                <section class="post-body">
                    <#if post.message??><p>${post.message}</p></#if>
                    <#if post.story??><p>${post.story}</p></#if>
-                   <#if post.fullPicture??><img class="media-object photo-profile" width="415" src="${post.fullPicture}"></#if>
+                   <#if post.fullPicture??><img class="media-object photo-profile" width="450" src="${post.fullPicture}"></#if>
                </section>
                <section class="post-footer">
                    <hr>
                    <div class="post-footer-option container">
                         <ul class="list-unstyled">
                             <li><a href="<#if post.permalinkUrl??>${post.permalinkUrl}</#if>"><i class="glyphicon glyphicon-link"></i> Link</a></li>
-                            <li><a href="#"><i class="glyphicon glyphicon-share-alt"></i> Share</a></li>
+                            <li><a href="https://twitter.com/share" <#if post.permalinkUrl??>data-url="${post.permalinkUrl}"</#if> class="twitter-share-button" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
                         </ul>
                    </div>
                </section>
