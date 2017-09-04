@@ -20,7 +20,6 @@ public class SettingServiceImpl implements SettingService {
 
     private final SettingRepository settingRepository;
 
-    private String encryptionKey;
     private String smtpPassword;
     private String smtpEmailAddress;
     private String facebookAppId;
@@ -45,14 +44,6 @@ public class SettingServiceImpl implements SettingService {
         LOGGER.debug("Saving:" + setting.toString());
 
         return settingRepository.save(setting);
-    }
-
-    public String getEncryptionKey() {
-        return encryptionKey;
-    }
-
-    public void setEncryptionKey(String encryptionKey) {
-        this.encryptionKey = encryptionKey;
     }
 
     public String getSmtpPassword() {
@@ -106,6 +97,7 @@ public class SettingServiceImpl implements SettingService {
         form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));
         form.setTwitter(getValue(settingRepository.findSettingByName(SettingService.TWITTER)));
         form.setYoutube(getValue(settingRepository.findSettingByName(SettingService.YOUTUBE)));
+        form.setFacebook(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK)));
 
         return form;
     }

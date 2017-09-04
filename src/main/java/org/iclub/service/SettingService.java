@@ -30,8 +30,7 @@ public interface SettingService {
     Optional<Setting> findSettingByName(String name);
     Setting save(Setting setting);
     SettingForm getSettingForm();
-    String getEncryptionKey();
-    void setEncryptionKey(String encryptionKey);
+
     String getSmtpPassword();
     void setSmtpPassword(String smtpPassword);
     String getSmtpEmailAddress();
