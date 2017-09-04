@@ -26,8 +26,8 @@ public class EmailServiceImpl implements EmailService {
                         final EmailJob job = queue.take();
                         final String from = settingService.findSettingByName(SettingService.TITLE).get().getValue();
                         final String fromEmail = settingService.findSettingByName(SettingService.CONTACT_EMAIL).get().getValue();
-                        final String smtpEmail = settingService.findSettingByName(SettingService.SMTP_EMAIL).get().getValue();
-                        final String password = settingService.findSettingByName(SettingService.SMTP_PASSWORD).get().getValue();
+                        final String smtpEmail = settingService.getSmtpEmailAddress();
+                        final String password = settingService.getSmtpPassword();
                         EmailUtil.sendHtmlEmail(fromEmail, smtpEmail, password, from, job.getToEmail(), job.getSubject(), job.getBody(), job.getToName());
                     } catch(InterruptedException e) {
                         LOGGER.error("Email Service", e);

@@ -15,22 +15,29 @@ public interface SettingService {
     String CONTACT_PHONE = "CONTACT_PHONE";
     String DESCRIPTION = "DESCRIPTION";
     String FACEBOOK = "FACEBOOK";
-    String FACEBOOK_APP_ID = "FACEBOOK_APP_ID";
-    String FACEBOOK_APP_SECRET = "FACEBOOK_APP_SECRET";
     String PINTEREST = "PINTEREST";
     String YOUTUBE = "YOUTUBE";
     String CONTACT_EMAIL = "CONTACT_EMAIL";
     String LOGO = "LOGO";
     String RSS = "RSS";
     String SCROLLERS = "SCROLLERS";
-    String SMTP_EMAIL = "SMTP_EMAIL";
-    String SMTP_PASSWORD = "SMTP_PASSWORD";
     String STRAVA = "STRAVA";
     String BANNER = "BANNER";
     String TITLE = "TITLE";
     String TWITTER = "TWITTER";
 
+
     Optional<Setting> findSettingByName(String name);
     Setting save(Setting setting);
     SettingForm getSettingForm();
+    String getEncryptionKey();
+    void setEncryptionKey(String encryptionKey);
+    String getSmtpPassword();
+    void setSmtpPassword(String smtpPassword);
+    String getSmtpEmailAddress();
+    void setSmtpEmailAddress(String smtpEmailAddress);
+    String getFacebookAppId();
+    void setFacebookAppId(String facebookAppId);
+    String getFacebookAppSecret();
+    void setFacebookAppSecret(String facebookAppSecret);
 }

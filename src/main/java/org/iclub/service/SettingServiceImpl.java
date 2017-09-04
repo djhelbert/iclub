@@ -1,6 +1,7 @@
 package org.iclub.service;
 
 import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.iclub.model.Setting;
@@ -9,13 +10,21 @@ import org.iclub.repository.SettingRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
+@ConfigurationProperties("iclub")
 public class SettingServiceImpl implements SettingService {
 
     private final SettingRepository settingRepository;
+
+    private String encryptionKey;
+    private String smtpPassword;
+    private String smtpEmailAddress;
+    private String facebookAppId;
+    private String facebookAppSecret;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SettingServiceImpl.class);
 
@@ -38,6 +47,46 @@ public class SettingServiceImpl implements SettingService {
         return settingRepository.save(setting);
     }
 
+    public String getEncryptionKey() {
+        return encryptionKey;
+    }
+
+    public void setEncryptionKey(String encryptionKey) {
+        this.encryptionKey = encryptionKey;
+    }
+
+    public String getSmtpPassword() {
+        return smtpPassword;
+    }
+
+    public void setSmtpPassword(String smtpPassword) {
+        this.smtpPassword = smtpPassword;
+    }
+
+    public String getSmtpEmailAddress() {
+        return smtpEmailAddress;
+    }
+
+    public void setSmtpEmailAddress(String smtpEmailAddress) {
+        this.smtpEmailAddress = smtpEmailAddress;
+    }
+
+    public String getFacebookAppId() {
+        return facebookAppId;
+    }
+
+    public void setFacebookAppId(String facebookAppId) {
+        this.facebookAppId = facebookAppId;
+    }
+
+    public String getFacebookAppSecret() {
+        return facebookAppSecret;
+    }
+
+    public void setFacebookAppSecret(String facebookAppSecret) {
+        this.facebookAppSecret = facebookAppSecret;
+    }
+
     @Override
     public SettingForm getSettingForm() {
         final SettingForm form = new SettingForm();
@@ -50,13 +99,8 @@ public class SettingServiceImpl implements SettingService {
         form.setContactState(getValue(settingRepository.findSettingByName(SettingService.CONTACT_STATE)));
         form.setContactZipCode(getValue(settingRepository.findSettingByName(SettingService.CONTACT_ZIP_CODE)));
         form.setContactPhone(getValue(settingRepository.findSettingByName(SettingService.CONTACT_PHONE)));
-        form.setFacebook(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK)));
-        form.setFacebookAppId(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_ID)));
-        form.setFacebookAppSecret(getValue(settingRepository.findSettingByName(SettingService.FACEBOOK_APP_SECRET)));
         form.setPinterest(getValue(settingRepository.findSettingByName(SettingService.PINTEREST)));
         form.setRss(getValue(settingRepository.findSettingByName(SettingService.RSS)));
-        form.setSmtpEmail(getValue(settingRepository.findSettingByName(SettingService.SMTP_EMAIL)));
-        form.setSmtpPassword(getValue(settingRepository.findSettingByName(SettingService.SMTP_PASSWORD)));
         form.setStrava(getValue(settingRepository.findSettingByName(SettingService.STRAVA)));
         form.setBanner(getValue(settingRepository.findSettingByName(SettingService.BANNER)));
         form.setTitle(getValue(settingRepository.findSettingByName(SettingService.TITLE)));

@@ -6,12 +6,8 @@ public class SettingForm {
     private String description = "";
     private String twitter = "";
     private String facebook = "";
-    private String facebookAppId = "";
-    private String facebookAppSecret = "";
     private String pinterest = "";
     private String youtube = "";
-    private String smtpEmail = "";
-    private String smtpPassword = "";
     private String contactEmail = "";
     private String contactAddressLine1 = "";
     private String contactAddressLine2 = "";
@@ -141,38 +137,6 @@ public class SettingForm {
 
     public void setBanner(String banner) {
         this.banner = banner;
-    }
-
-    public String getFacebookAppId() {
-        return facebookAppId;
-    }
-
-    public void setFacebookAppId(String facebookAppId) {
-        this.facebookAppId = facebookAppId;
-    }
-
-    public String getSmtpEmail() {
-        return smtpEmail;
-    }
-
-    public void setSmtpEmail(String smtpEmail) {
-        this.smtpEmail = smtpEmail;
-    }
-
-    public String getSmtpPassword() {
-        return smtpPassword;
-    }
-
-    public void setSmtpPassword(String smtpPassword) {
-        this.smtpPassword = smtpPassword;
-    }
-
-    public String getFacebookAppSecret() {
-        return facebookAppSecret;
-    }
-
-    public void setFacebookAppSecret(String facebookAppSecret) {
-        this.facebookAppSecret = facebookAppSecret;
     }
 
     public String getRss() {

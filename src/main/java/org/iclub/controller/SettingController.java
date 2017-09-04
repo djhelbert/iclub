@@ -72,14 +72,10 @@ public class SettingController {
         createSetting(SettingService.CONTACT_PHONE, form.getContactPhone());
         createSetting(SettingService.DESCRIPTION, form.getDescription());
         createSetting(SettingService.FACEBOOK, form.getFacebook());
-        createSetting(SettingService.FACEBOOK_APP_ID, form.getFacebookAppId());
-        createSetting(SettingService.FACEBOOK_APP_SECRET, form.getFacebookAppSecret());
         createSetting(SettingService.PINTEREST, form.getPinterest());
         createSetting(SettingService.RSS, form.getRss());
         createSetting(SettingService.STRAVA, form.getStrava());
         createSetting(SettingService.BANNER, form.getBanner());
-        createSetting(SettingService.SMTP_EMAIL, form.getSmtpEmail());
-        createSetting(SettingService.SMTP_PASSWORD, form.getSmtpPassword());
         createSetting(SettingService.TITLE, form.getTitle());
         createSetting(SettingService.TWITTER, form.getTwitter());
         createSetting(SettingService.YOUTUBE, form.getYoutube());

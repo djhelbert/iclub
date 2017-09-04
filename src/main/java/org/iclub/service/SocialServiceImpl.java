@@ -34,14 +34,14 @@ public class SocialServiceImpl implements SocialService {
     }
 
     private Configuration createConfiguration() throws FacebookException {
-        final Optional<Setting> appId = settingService.findSettingByName(SettingService.FACEBOOK_APP_ID);
-        final Optional<Setting> secret = settingService.findSettingByName(SettingService.FACEBOOK_APP_SECRET);
+        final String appId = settingService.getFacebookAppId();
+        final String secret = settingService.getFacebookAppSecret();
 
-        if (appId.isPresent() && secret.isPresent()) {
+        if (appId != null  && secret != null) {
             ConfigurationBuilder confBuilder = new ConfigurationBuilder();
             confBuilder.setDebugEnabled(true);
-            confBuilder.setOAuthAppId(appId.get().getValue());
-            confBuilder.setOAuthAppSecret(secret.get().getValue());
+            confBuilder.setOAuthAppId(appId);
+            confBuilder.setOAuthAppSecret(secret);
             confBuilder.setUseSSL(true);
             confBuilder.setJSONStoreEnabled(true);
 
