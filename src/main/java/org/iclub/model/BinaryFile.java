@@ -106,6 +106,14 @@ public class BinaryFile {
         this.name = name;
     }
 
+    public boolean isImage() {
+        if (mimetype != null && mimetype.startsWith("image")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String getMimetype() {
         return mimetype;
     }

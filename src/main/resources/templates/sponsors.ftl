@@ -12,8 +12,8 @@
         <#list sponsors as sponsor>
         <div class="testiminial-block">
             <div class="row">
-                <div class="col-sm-3"><a href="${sponsor.url!'#'}"><img src="/file?id=${sponsor.binaryFile.id!''}" alt="Logo" class="img-responsive"/></a></div>
-                <div class="col-sm-9 testimonial-content">
+                <div class="col-md-3 col-sm-3"><a href="${sponsor.url!'#'}"><img src="/file?id=${sponsor.binaryFile.id!''}" alt="Logo" class="img-responsive"/></a></div>
+                <div class="col-md-9 col-sm-9 testimonial-content">
                     <h3>${sponsor.name!''}</h3>
                     <p>${sponsor.description!''}</p>
                 </div>

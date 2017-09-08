@@ -264,6 +264,7 @@
                   <li role="separator" class="divider"></li>
                   <li><a href="/admin/about">About</a></li>
                   <li><a href="/admin/images">Images</a></li>
+                  <li><a href="/admin/resources">Resources</a></li>
                   <li><a href="/admin/privacy">Privacy Policy</a></li>
                   <li><a href="/admin/settings">Settings</a></li>
                   <li><a href="/admin/sponsors">Sponsors</a></li>

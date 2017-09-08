@@ -1,5 +1,11 @@
 <#include "header.ftl">
 
+<div class="container" style="margin-bottom:5px">
+  <ul class="breadcrumb">
+    <li class="active">${TITLE} News</li>
+  </ul>
+</div>
+
 <#list posts as post>
 <div class="container">
     <div class="col-md-6">
