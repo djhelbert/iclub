@@ -40,7 +40,8 @@ public class EmailUtil {
      */
     public static void sendHtmlEmail(String fromEmail, String smtpEmail, String password, String name, String toEmail, String subject, String body, String toName) {
         try {
-            HtmlEmail email = new HtmlEmail();
+            final HtmlEmail email = new HtmlEmail();
+
             email.setSSLOnConnect(true);
             email.setHostName(SSLEmail.host);
             email.setSmtpPort(Integer.parseInt(SSLEmail.port));

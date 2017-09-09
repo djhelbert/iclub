@@ -6,5 +6,6 @@ public interface EmailService {
 
     public void addJob(EmailJob job);
     public void shutdown();
+    public Boolean isHealthy();
 
 }
