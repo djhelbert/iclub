@@ -43,7 +43,7 @@
   </form>
 </div>
 
-<script type="text/javascript" src="/webjars/tinymce/4.2.1/tinymce.min.js" ></script>
+<script type="text/javascript" src="/webjars/tinymce/4.5.6/tinymce.min.js" ></script>
 <script>tinymce.init({ selector:'textarea' });</script>
 
 <#include "footer.ftl">
