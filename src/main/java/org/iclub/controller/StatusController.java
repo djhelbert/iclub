@@ -1,5 +1,8 @@
 package org.iclub.controller;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.iclub.service.BinaryFileService;
@@ -69,6 +72,24 @@ public class StatusController {
         } catch (Exception err) {
             LOGGER.error("Status", err);
             mv.addObject("smtp", Boolean.FALSE);
+        }
+
+        try {
+            final HttpURLConnection connection = (HttpURLConnection) new URL("http://www.strava.com").openConnection();
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            connection.setRequestMethod("HEAD");
+
+            int responseCode = connection.getResponseCode();
+
+            if (200 <= responseCode && responseCode <= 399) {
+                mv.addObject("strava", Boolean.TRUE);
+            } else {
+                mv.addObject("strava", Boolean.FALSE);
+            }
+        } catch (Exception err) {
+            LOGGER.error("Status", err);
+            mv.addObject("strava", Boolean.FALSE);
         }
 
         return mv;

@@ -6,6 +6,7 @@
           <h2>Service Status Page</h2>
         </div>
       </div>
+      <div>&nbsp;</div>
       <div class="row clearfix">
           <div class="col-md-12 column">
               <div class="panel panel-warning">
@@ -61,6 +62,19 @@
                               </h4>
                               <p class="list-group-item-text">
                                   <#if smtp>
+                                    <span class="label label-success">Operational</span>
+                                  <#else>
+                                    <span class="label label-danger">Not Operational</span>
+                                  </#if>
+                              </p>
+                          </div>
+
+                          <div class="list-group-item">
+                              <h4 class="list-group-item-heading">
+                                  Strava
+                              </h4>
+                              <p class="list-group-item-text">
+                                  <#if strava>
                                     <span class="label label-success">Operational</span>
                                   <#else>
                                     <span class="label label-danger">Not Operational</span>
