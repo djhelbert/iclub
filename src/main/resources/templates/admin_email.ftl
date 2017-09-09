@@ -44,6 +44,18 @@
 </div>
 
 <script type="text/javascript" src="/webjars/tinymce/4.5.6/tinymce.min.js" ></script>
-<script>tinymce.init({ selector:'textarea' });</script>
+<script>
+tinymce.init({
+  selector: "textarea",
+  plugins: [
+    'advlist autolink lists link image charmap print preview anchor textcolor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code'
+  ],
+  menubar: false,
+  toolbar: 'insert | undo redo |  styleselect | bold italic backcolor  | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+  image_caption: true
+});
+</script>
 
 <#include "footer.ftl">
