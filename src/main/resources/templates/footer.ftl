@@ -40,7 +40,7 @@
 
     <div class="footer-bottom">
         <div class="container">
-            <p class="pull-left">Copyright © 2017. All right reserved.</p>
+            <p class="pull-left">Powered by the <a href="https://github.com/djhelbert/iclub">iClub Project</a> Copyright © 2017. All right reserved.</p>
         </div>
     </div>
 </footer>
