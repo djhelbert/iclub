@@ -25,6 +25,14 @@ logging.level.org.iclub=DEBUG
 spring.freemarker.expose-request-attributes=true
 spring.freemarker.expose-spring-macro-helpers=true
 server.port=8080
+
+# Must be GMail Account
+iclub.smtpPassword = ********
+iclub.smtpEmailAddress = <your username>@gmail.com
+# Facebook API
+iclub.facebookAppId=***************
+iclub.facebookAppSecret=********************************
+
 ```
 
 # Default Admin Credentials
