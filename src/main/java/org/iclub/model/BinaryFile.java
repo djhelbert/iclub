@@ -146,6 +146,10 @@ public class BinaryFile {
         this.resource = resource;
     }
 
+    public int getDataSize() {
+        return data == null ? 0 : (data.length/1000);
+    }
+
     public byte[] getData() {
         return data;
     }

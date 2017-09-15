@@ -30,6 +30,9 @@ public class ResourceController {
     public ModelAndView getAdminResourcePage(HttpServletRequest request) {
         final ModelAndView mv = new ModelAndView("admin_resources");
 
+        String requestUrl = request.getRequestURL().toString().replace("/admin/resources", "");
+
+        mv.addObject("requestUrl", requestUrl);
         mv.addObject("resources", binaryFileService.findByResource(Boolean.TRUE));
 
         if("true".equals(request.getParameter("added"))) {

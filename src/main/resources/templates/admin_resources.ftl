@@ -23,8 +23,9 @@
                 <div class="col-md-2 col-sm-2"><#if resource.isImage()><img src="/file?id=${resource.id!''}" alt="Resource" class="img-responsive"/></#if></div>
                 <div class="col-md-8 col-sm-8 testimonial-content">
                     <h3>${resource.name!''}</h3>
-                    <p>/file?id=${resource.id!''}</p>
-                    <p>${resource.mimetype!''}</p>
+                    <p>${requestUrl!''}/file?id=${resource.id!''}</p>
+                    <p>Mimetype: ${resource.mimetype!''}</p>
+                    <p>Size: ${resource.dataSize!''} kb</p>
                 </div>
                 <div><button type="submit" class="btn btn-default" onclick="location.href='/admin/resources/delete?id=${resource.id}'"><i class="fa fa-fw s fa-remove"></i> Delete</button></div>
             </div>
