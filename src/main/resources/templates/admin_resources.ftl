@@ -23,7 +23,7 @@
                 <div class="col-md-2 col-sm-2"><#if resource.isImage()><img src="/file?id=${resource.id!''}" alt="Resource" class="img-responsive"/></#if></div>
                 <div class="col-md-8 col-sm-8 testimonial-content">
                     <h3>${resource.name!''}</h3>
-                    <p>${requestUrl!''}/file?id=${resource.id!''}</p>
+                    <p><a href="${requestUrl!''}/file?id=${resource.id!''}">${requestUrl!''}/file?id=${resource.id!''}</a></p>
                     <p>Mimetype: ${resource.mimetype!''}</p>
                     <p>Size: ${resource.dataSize!''} kb</p>
                 </div>
