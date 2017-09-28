@@ -34,5 +34,45 @@ public class UserUpdateValidator implements Validator {
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "firstname.required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "lastname.required");
+
+        if (!isValid(userForm.getAddressLine1())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getAddressLine2())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getCity())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getState())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getFirstName())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getLastName())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getZipCode())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getHomePhone())) {
+            errors.reject("illegal.char");
+        }
+        if (!isValid(userForm.getCellPhone())) {
+            errors.reject("illegal.char");
+        }
+    }
+
+    private boolean isValid(String value) {
+        if (value == null) {
+            return true;
+        }
+
+        if (value.contains("<") || value.contains("<") || value.contains("/") || value.contains("!") || value.contains("#") || value.contains("$")) {
+            return false;
+        }
+
+        return true;
     }
 }
