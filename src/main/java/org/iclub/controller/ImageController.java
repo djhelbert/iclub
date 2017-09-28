@@ -33,7 +33,12 @@ public class ImageController {
     @RequestMapping(value = "/admin/images", method = RequestMethod.GET)
     public ModelAndView getAdminImagesPage(HttpServletRequest request) {
         final ModelAndView mv = new ModelAndView("admin_images");
-        mv.addObject("logo", binaryFileService.findBinaryFileByLogo(Boolean.TRUE).get());
+        final Optional<BinaryFile> logoOption = binaryFileService.findBinaryFileByLogo(Boolean.TRUE);
+
+        if (logoOption.isPresent()) {
+            mv.addObject("logo", binaryFileService.findBinaryFileByLogo(Boolean.TRUE).get());
+        }
+
         mv.addObject("scrollers", binaryFileService.findByScroller(Boolean.TRUE));
 
         if("true".equals(request.getParameter("added"))) {
@@ -73,10 +78,18 @@ public class ImageController {
                 binaryFile.setResource(Boolean.FALSE);
 
                 binaryFileService.save(binaryFile);
-
                 freemarkerConfigService.refresh();
             } else {
-                LOGGER.warn("No logo image found");
+                final BinaryFile binaryFile = new BinaryFile();
+                binaryFile.setName(file.getOriginalFilename());
+                binaryFile.setMimetype(file.getContentType());
+                binaryFile.setData(file.getBytes());
+                binaryFile.setLogo(Boolean.TRUE);
+                binaryFile.setScroller(Boolean.FALSE);
+                binaryFile.setResource(Boolean.FALSE);
+
+                binaryFileService.save(binaryFile);
+                freemarkerConfigService.refresh();
             }
         } catch (Exception e) {
             LOGGER.error("Save Logo Image Error", e);

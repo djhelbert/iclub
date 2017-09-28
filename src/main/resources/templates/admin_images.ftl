@@ -14,6 +14,7 @@
   </ul>
 </div>
 
+<#if logo??>
 <div class="container" style="margin-bottom:5px">
   <div class="row">
     <div class="col-md-12">
@@ -29,6 +30,7 @@
     </div>
   </div>
 </div>
+</#if>
 
 <div class="container" style="margin-bottom:10px">
 <h3>Update Logo Image</h3>
